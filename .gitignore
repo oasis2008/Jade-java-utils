@@ -1,4 +1,17 @@
 *.class
+*.swp
+*.log
+
+# eclipse files #
+.metadata/
+.settings/
+.classpath
+.project
+bin/
+
+
+# maven files #
+target/
 
 # Package Files #
 *.jar

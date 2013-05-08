@@ -1,4 +1,4 @@
 Jade-java-utils
 ===============
 
-Jade Java Utils
+java utils
