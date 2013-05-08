@@ -4,11 +4,15 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>jade.jadeutils</groupId>
+	<parent>
+		<groupId>jade.jadeutils</groupId>
+		<artifactId>jadeutils-parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../Jade-Utils-Parent/pom.xml</relativePath>
+	</parent>
 	<artifactId>example-cdn</artifactId>
-	<packaging>war</packaging>
-	<version>1.0.0-SNAPSHOT</version>
 	<name>Simple cdn</name>
+	<packaging>war</packaging>
 
 	<dependencies>
 		<dependency>
