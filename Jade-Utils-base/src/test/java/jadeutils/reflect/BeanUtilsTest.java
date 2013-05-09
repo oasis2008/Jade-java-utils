@@ -3,7 +3,9 @@
  */
 package jadeutils.reflect;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
@@ -30,7 +32,7 @@ public class BeanUtilsTest {
 	}
 
 	@Test
-	public void testGetBeanField() {
+	public void testGetBeanField() throws Exception {
 		User a = new User();
 		a.setId("001");
 		a.setName("aa");
@@ -45,15 +47,38 @@ public class BeanUtilsTest {
 		//
 		a.setName(null);
 		assertNull(BeanUtils.getFieldValue(a, "name"));
-		//
+	}
+
+	@Test(expected = NoSuchMethodException.class)
+	public void testGetBeanFieldException() throws Exception {
+		User a = new User();
+		a.setId("001");
+		a.setName("aa");
+		a.setAge(20);
+		a.setIsAdmin(false);
+		a.setActived(true);
 		assertNull(BeanUtils.getFieldValue(a, "noThisField"));
-//		User b = new User();
-//		BeanUtils.copyBean(a, b);
-//		assertTrue(a.equals(b));
 	}
 
 	@Test
-	public void testCopyBean() {
+	public void testCopyField() throws Exception {
+		User a = new User();
+		a.setId("001");
+		a.setName("aa");
+		a.setAge(20);
+		a.setIsAdmin(false);
+		a.setActived(true);
+		User b = new User();
+		BeanUtils.copyField(a, b, String.class, "id");
+		assertEquals("001", b.getId());
+		BeanUtils.copyField(a, b, Integer.class, "age");
+		assertEquals(new Integer(20), b.getAge());
+		BeanUtils.copyField(a, b, Boolean.class, "actived");
+		assertEquals(new Boolean(true), b.getActived());
+	}
+
+	@Test
+	public void testCopyBean() throws Exception {
 		User a = new User();
 		a.setId("aa");
 		a.setName("aa");
