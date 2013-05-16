@@ -4,6 +4,7 @@
 package jadeutils.reflect;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -88,6 +89,41 @@ public class BeanUtilsTest {
 		User b = new User();
 		BeanUtils.copyBean(a, b);
 		assertTrue(a.equals(b));
+
+		Guest c = new Guest();
+		BeanUtils.copyBean(a, c);
+		assertEquals(a.getId(), c.getId());
+		assertEquals(a.getAge(), c.getAge());
+		assertEquals(a.getIsAdmin(), c.getIsAdmin());
+		assertEquals(a.getActived(), c.getActived());
+
+		c.setNickName("aa");
+		b = new User();
+		BeanUtils.copyBean(c, b);
+		assertEquals(c.getId(), b.getId());
+		assertEquals(c.getAge(), b.getAge());
+		assertEquals(c.getIsAdmin(), b.getIsAdmin());
+		assertEquals(c.getActived(), b.getActived());
+
+		Student d = new Student();
+		BeanUtils.copyBean(a, d);
+		BeanUtils.copyBean(a, d);
+		assertEquals(a.getId(), d.getId());
+		assertEquals(a.getAge(), d.getAge());
+		assertFalse(a.getIsAdmin().equals(d.getIsAdmin()));
+		assertEquals(a.getActived(), d.getActived());
 	}
 
+	@Test(expected = Exception.class)
+	public void testCopyBeanException() throws Exception {
+		User a = new User();
+		a.setId("aa");
+		a.setName("aa");
+		a.setAge(20);
+		a.setIsAdmin(false);
+		a.setActived(true);
+
+		Student d = new Student();
+		BeanUtils.copyBean(a, d, false);
+	}
 }
