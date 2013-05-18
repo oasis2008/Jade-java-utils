@@ -87,6 +87,34 @@ public interface BaseDao<T> {
 	public int getSqlResultCount(String sql, Map<String, Object> conditions)
 			throws JadeDaoException;
 
+	public <K> List<K> findByHqlWithPagging(String count, String fields,
+			String hql,
+			Map<String, Object> conditions, PageSplitDto dto)
+			throws JadeDaoException;
+
+	public <K> List<K> findBySqlWithPagging(String count, String fields,
+			String hql,
+			Map<String, Object> conditions, PageSplitDto dto)
+			throws JadeDaoException;
+
+	public int getHqlResultCount(String hql, Map<String, Object> conditions)
+			throws JadeDaoException;
+
+	/**
+	 * 根据分页大小查询
+	 * 
+	 * @param hql
+	 *            查询的hql
+	 * @param conditions
+	 *            查询条件
+	 * @param dto
+	 *            保存分页信息的数据结构
+	 * @return
+	 * @throws JadeDaoException
+	 */
+	public <K> List<K> findByHql(String hql, Map<String, Object> conditions,
+			PageSplitDto dto) throws JadeDaoException;
+
 	/**
 	 * 测试连接
 	 */

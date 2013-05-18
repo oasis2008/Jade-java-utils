@@ -1,7 +1,7 @@
 package jadeutils.dao.impl;
 
-import jadeutils.dao.JadeDaoException;
 import jadeutils.dao.BaseDao;
+import jadeutils.dao.JadeDaoException;
 import jadeutils.dao.PageSplitDto;
 import jadeutils.dao.PageSpliter;
 
@@ -99,6 +99,27 @@ public abstract class BaseHibernateDao<T> implements BaseDao<T> {
 		this.hibernateDaoSupport.getHibernateTemplate().delete(model);
 	}
 
+	@SuppressWarnings("rawtypes")
+	private void addParams(Query query, Map<String, Object> conditions) {
+		for (String key : conditions.keySet()) {
+			Object value = conditions.get(key);
+			if (value instanceof Collection) {
+				query.setParameterList(key, (Collection) value);
+			} else {
+				query.setParameter(key, value);
+			}
+		}
+	}
+
+	@Override
+	public <K> List<K> findBySqlWithPagging(String count, String fields,
+			String hql, Map<String, Object> conditions, PageSplitDto dto)
+			throws JadeDaoException {
+		int countRecNumber = this.getSqlResultCount(count + hql, conditions);
+		dto.setCountRecNumber(countRecNumber);
+		return this.findBySql(fields + hql, conditions, dto);
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public <K> List<K> findBySql(String sql, Map<String, Object> conditions,
@@ -109,10 +130,7 @@ public abstract class BaseHibernateDao<T> implements BaseDao<T> {
 			query = SessionFactoryUtils.getSession(
 					this.hibernateDaoSupport.getHibernateTemplate()
 							.getSessionFactory(), true).createSQLQuery(sql);
-			for (String key : conditions.keySet()) {
-				Object value = conditions.get(key);
-				query.setParameter(key, value);
-			}
+			this.addParams(query, conditions);
 			// 分页
 			if (null != dto && dto.getPageSize() > 0 && dto.getCurrPageNo() > 0) {
 				query.setFirstResult(PageSpliter.getOffSet(dto.getCurrPageNo(),
@@ -135,15 +153,21 @@ public abstract class BaseHibernateDao<T> implements BaseDao<T> {
 			Query query = SessionFactoryUtils.getSession(
 					this.hibernateDaoSupport.getHibernateTemplate()
 							.getSessionFactory(), true).createSQLQuery(sql);
-			for (String key : conditions.keySet()) {
-				Object value = conditions.get(key);
-				query.setParameter(key, value);
-			}
+			this.addParams(query, conditions);
 			result = ((BigInteger) query.list().get(0)).intValue();
 		} catch (Exception e) {
 			throw formatQueryException(e, sql, conditions);
 		}
 		return result;
+	}
+
+	@Override
+	public <K> List<K> findByHqlWithPagging(String count, String fields,
+			String hql, Map<String, Object> conditions, PageSplitDto dto)
+			throws JadeDaoException {
+		int countRecNumber = this.getHqlResultCount(count + hql, conditions);
+		dto.setCountRecNumber(countRecNumber);
+		return this.findByHql(fields + hql, conditions, dto);
 	}
 
 	/**
@@ -154,7 +178,8 @@ public abstract class BaseHibernateDao<T> implements BaseDao<T> {
 	 * @return
 	 * @throws JadeDaoException
 	 */
-	@SuppressWarnings("rawtypes")
+
+	@Override
 	public int getHqlResultCount(String hql, Map<String, Object> conditions)
 			throws JadeDaoException {
 		Query query = null;
@@ -163,14 +188,7 @@ public abstract class BaseHibernateDao<T> implements BaseDao<T> {
 			query = SessionFactoryUtils.getSession(
 					this.hibernateDaoSupport.getHibernateTemplate()
 							.getSessionFactory(), true).createQuery(hql);
-			for (String key : conditions.keySet()) {
-				Object value = conditions.get(key);
-				if (value instanceof Collection) {
-					query.setParameterList(key, (List) value);
-				} else {
-					query.setParameter(key, value);
-				}
-			}
+			this.addParams(query, conditions);
 			result = ((Long) query.list().get(0)).intValue();
 		} catch (Exception e) {
 			throw formatQueryException(e, hql, conditions);
@@ -190,6 +208,7 @@ public abstract class BaseHibernateDao<T> implements BaseDao<T> {
 	 * @return
 	 * @throws JadeDaoException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public <K> List<K> findByHql(String hql, Map<String, Object> conditions,
 			PageSplitDto dto) throws JadeDaoException {
@@ -199,14 +218,7 @@ public abstract class BaseHibernateDao<T> implements BaseDao<T> {
 			query = SessionFactoryUtils.getSession(
 					this.hibernateDaoSupport.getHibernateTemplate()
 							.getSessionFactory(), true).createQuery(hql);
-			for (String key : conditions.keySet()) {
-				Object value = conditions.get(key);
-				if (value instanceof Collection) {
-					query.setParameterList(key, (Collection<Object>) value);
-				} else {
-					query.setParameter(key, value);
-				}
-			}
+			this.addParams(query, conditions);
 			// 分页
 			if (null != dto && dto.getPageSize() > 0 && dto.getCurrPageNo() > 0) {
 				query.setFirstResult(PageSpliter.getOffSet(dto.getCurrPageNo(),

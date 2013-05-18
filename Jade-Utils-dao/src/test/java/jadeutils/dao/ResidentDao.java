@@ -6,7 +6,6 @@ package jadeutils.dao;
 import jadeutils.dao.impl.BaseHibernateDao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,11 +29,30 @@ public class ResidentDao extends BaseHibernateDao<Resident> {
 		this.configHibernateTemplate(hibernateTemplate);
 	}
 
-	public List<Resident> findDetail(ResidentDto dto) throws JadeDaoException {
+	public List<Resident> findByHql(QueryConditions cdts)
+			throws JadeDaoException {
+		String count = "select count(r) ";
+		String fields = "select r ";
+		String sql = "from Resident r ";
+		cdts.configure("r", null);
+		Map<String, Object> conditions = cdts.generageParamMap();
+		sql = sql + cdts.toString();
+		List<Resident> resultList = this.findByHqlWithPagging(count, fields,
+				sql, conditions, cdts);
+		return resultList;
+	}
+
+	public List<Resident> findBySql(QueryConditions cdts)
+			throws JadeDaoException {
 		List<Resident> resultList = new ArrayList<Resident>();
-		Map<String, Object> conditions = new HashMap<String, Object>();
-		String sql = "select id, userName, password, nick,createTime from Resident";
-		List<Object[]> recs = this.findBySql(sql, conditions, dto);
+		String count = "select count(id) ";
+		String fields = "select id, userName, password, nick, status, createTime ";
+		String sql = "from Resident r ";
+		cdts.configure("r", null);
+		Map<String, Object> conditions = cdts.generageParamMap();
+		sql = sql + cdts.toString();
+		List<Object[]> recs = this.findBySqlWithPagging(count, fields, sql,
+				conditions, cdts);
 		if (null != recs && recs.size() > 0) {
 			for (Object[] rec : recs) {
 				Resident r = new Resident();
@@ -43,9 +61,11 @@ public class ResidentDao extends BaseHibernateDao<Resident> {
 				c++;
 				r.setUserName(null == rec[c] ? null : (String) rec[c]);
 				c++;
-				r.setPassword(null == rec[0] ? null : (String) rec[0]);
+				r.setPassword(null == rec[c] ? null : (String) rec[c]);
 				c++;
-				r.setNick(null == rec[0] ? null : (String) rec[0]);
+				r.setNick(null == rec[c] ? null : (String) rec[c]);
+				c++;
+				r.setStatus(null == rec[c] ? null : (String) rec[c]);
 				c++;
 				resultList.add(r);
 			}

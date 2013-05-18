@@ -10,13 +10,16 @@ import java.util.List;
  * 
  */
 public class ResidentDto extends PageSplitDto {
+	public enum Statue {
+		ACTIVE, DISABLE
+	}
+
 	private String userId;
 	private String userName;
 	private String passward;
 	private String nickname;
-
+	private Statue statue;
 	private List<Resident> resultList;
-
 	private List<Resident> modelList;
 
 	public List<Resident> getResultList() {
@@ -65,6 +68,14 @@ public class ResidentDto extends PageSplitDto {
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+
+	public Statue getStatue() {
+		return statue;
+	}
+
+	public void setStatue(Statue statue) {
+		this.statue = statue;
 	}
 
 }

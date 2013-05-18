@@ -28,6 +28,7 @@ public class Resident implements Serializable {
 	private String userName;
 	private String password;
 	private String nick;
+	private String status;
 	private Date createTime;
 
 	/**
@@ -78,6 +79,14 @@ public class Resident implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }
