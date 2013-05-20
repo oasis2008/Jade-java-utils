@@ -13,6 +13,7 @@
 		<module>../Jade-Utils-base</module>
 		<module>../Jade-Utils-cache</module>
 		<module>../Jade-Utils-dao</module>
+		<module>../Jade-Utils-web</module>
 		<module>../example-cdn</module>
 	</modules>
 
