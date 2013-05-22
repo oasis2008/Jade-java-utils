@@ -39,12 +39,10 @@ public class BeanUtils {
 	}
 
 	/**
-	 * 复制bean对象的值
+	 * Copy bean object
 	 * 
 	 * @param srcBean
-	 *            原对象
-	 * @param tb
-	 *            目标对象
+	 * @param tagBean
 	 * @author
 	 */
 	public static void copyBean(Object srcBean, Object tagBean) {
@@ -56,12 +54,10 @@ public class BeanUtils {
 	}
 
 	/**
-	 * 复制bean对象的值
+	 * Copy bean object
 	 * 
 	 * @param srcBean
-	 *            原对象
 	 * @param tb
-	 *            目标对象
 	 * @author
 	 */
 	public static void copyBean(Object srcBean, Object tagBean, boolean isSilent)
@@ -81,7 +77,9 @@ public class BeanUtils {
 			Method setter = setterMap.get(t.getKey());
 			if (null != getter && null != setter) {
 				try {
-					setter.invoke(tagBean, getter.invoke(srcBean));
+					if (null != getter.invoke(srcBean)) {
+						setter.invoke(tagBean, getter.invoke(srcBean));
+					}
 				} catch (Exception e) {
 					if (!isSilent) {
 						throw e;

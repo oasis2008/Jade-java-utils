@@ -10,11 +10,11 @@ import org.junit.Test;
  */
 public class MD5CoderTest {
 
-
 	@Test
 	public void testMD5String() {
-		Assert.assertEquals("bf17f4ab50fe9cb9e90ac041351d3946",
-				MD5Coder.encodeString("哈哈哈"));
+		System.out.println(MD5Coder.encodeString("Hello world!"));
+		Assert.assertEquals("86fb269d190d2c85f6e0468ceca42a20",
+				MD5Coder.encodeString("Hello world!"));
 	}
 
 }

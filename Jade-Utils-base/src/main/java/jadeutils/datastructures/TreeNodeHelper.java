@@ -12,16 +12,16 @@ import java.util.Map;
 public class TreeNodeHelper<K, T> {
 
 	/**
-	 * 把结果集组成树
+	 * make list to a tree
 	 * 
 	 * @param root
-	 *            一个根结点
+	 *            root note
 	 * @param nodes
-	 *            所有的结点
+	 *            list of all nodes
 	 * @param map
-	 *            所有结点的ID->对象映射
+	 *            map of nodeId => node
 	 * @param cper
-	 *            子结点排序的comparaotr
+	 *            comparator for sort
 	 */
 	@SuppressWarnings("unchecked")
 	public void genTree(T root, List<T> nodes, Map<K, T> map, Comparator<T> cper) {

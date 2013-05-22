@@ -20,12 +20,11 @@ public class MessageMap {
 
 	/**
 	 * <p>
-	 * 从properties文件中取得消息。
+	 * load from prop file
 	 * </p>
 	 * 
 	 * @param msgKey
-	 *            消息key值
-	 * @return properties文件中对应的消息
+	 * @return
 	 */
 	public String getMessage(String msgKey) {
 		String strErrorMsg = "Err load msg properties";
@@ -39,14 +38,12 @@ public class MessageMap {
 
 	/**
 	 * <p>
-	 * 从properties文件中取得消息。(Log相关)
+	 * load form prop
 	 * </p>
 	 * 
 	 * @param msgKey
-	 *            消息key值
 	 * @param params
-	 *            消息参数key值
-	 * @return properties文件中对应的消息(Log相关)
+	 * @return
 	 */
 	public String getMessage(String msgKey, String[] params) {
 		Object obj[] = params;
