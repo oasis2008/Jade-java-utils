@@ -11,6 +11,7 @@
 
 	<modules>
 		<module>../Jade-Utils-base</module>
+		<module>../Jade-Utils-extJs</module>
 		<module>../Jade-Utils-cache</module>
 		<module>../Jade-Utils-dao</module>
 		<module>../Jade-Utils-web</module>
