@@ -6,7 +6,7 @@ public class ExtJsTest {
 
 	@Test
 	public void test() {
-		ModelCreater.printConfigForExtJS("OmsOmsStkinModel");
+		ModelCreater.printConfigForExtJS("OmsStkinDtlModel");
 	}
 
 }
