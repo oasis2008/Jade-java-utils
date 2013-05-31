@@ -1,6 +1,0 @@
-String userName;
-String password;
-Integer level;
-Double amount;
-Date createTime;
-Date updateTime;

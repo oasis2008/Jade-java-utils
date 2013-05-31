@@ -72,7 +72,7 @@ public class ModelCreater {
 			if (null != f && f.length > 1 && StringUtils.isNotBlank(f[0])//
 					&& StringUtils.isNotBlank(f[1])) {
 				String line = mm.getMessage(f[0]);
-				line = line.replaceAll("\\{0\\}", f[1]);
+				line = line.replaceAll("\\{fieldName\\}", f[1]);
 				if (StringUtils.isNotBlank(line)) {
 					sb.append("\t").append(line);
 					if (i < fieldList.size() - 1) {
@@ -85,15 +85,16 @@ public class ModelCreater {
 		sb.append("]\n");
 		/* */
 		sb.append("fields:[\n");
-		sb.append("\t{xtype: 'rownumberer', text: messages['common.table.seq'], width: 15, sortable: false}");
+		sb.append("\t{width: 50,hidden:false,sortable:false,xtype:'rownumberer',text:messages['common.table.seq']},\n");
 		mm = new MessageMap("tableFields");
 		for (int i = 0; i < fieldList.size(); i++) {
 			String[] f = fieldList.get(i);
 			if (null != f && f.length > 1 && StringUtils.isNotBlank(f[0])//
 					&& StringUtils.isNotBlank(f[1])) {
 				String line = mm.getMessage(f[0]);
-				line = line.replaceAll("\\{0\\}", modelName);
-				line = line.replaceAll("\\{1\\}", f[1]);
+				// TODO: id结尾的长度调整到200，时间类长度调整到150
+				line = line.replaceAll("\\{modelName\\}", modelName);
+				line = line.replaceAll("\\{fieldName\\}", f[1]);
 				if (StringUtils.isNotBlank(line)) {
 					sb.append("\t").append(line);
 					if (i < fieldList.size() - 1) {
@@ -113,7 +114,7 @@ public class ModelCreater {
 			if (null != f && f.length > 1 && StringUtils.isNotBlank(f[0])//
 					&& StringUtils.isNotBlank(f[1])) {
 				String line = mm.getMessage(f[0]);
-				line = line.replaceAll("\\{0\\}", f[1]);
+				line = line.replaceAll("\\{fieldName\\}", f[1]);
 				if (StringUtils.isNotBlank(line)) {
 					sb.append("\t").append(line);
 					if (i < fieldList.size() - 1) {
@@ -124,6 +125,14 @@ public class ModelCreater {
 			}
 		}
 		sb.append("]\n");
+
+		/* */
+		sb.append("i18n:\n");
+		for (int i = 0; i < fieldList.size(); i++) {
+			String[] f = fieldList.get(i);
+			sb.append(modelName).append(".").append(f[1]).append("=\n");
+		}
+		sb.append("\n");
 		return sb.toString();
 	}
 }
