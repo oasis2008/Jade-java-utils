@@ -92,6 +92,7 @@ public class ModelCreater {
 			if (null != f && f.length > 1 && StringUtils.isNotBlank(f[0])//
 					&& StringUtils.isNotBlank(f[1])) {
 				String line = mm.getMessage(f[0]);
+				// TODO: id结尾的长度调整到200，时间类长度调整到150
 				line = line.replaceAll("\\{modelName\\}", modelName);
 				line = line.replaceAll("\\{fieldName\\}", f[1]);
 				if (StringUtils.isNotBlank(line)) {
