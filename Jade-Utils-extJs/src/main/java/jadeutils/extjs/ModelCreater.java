@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import joptsimple.OptionParser;
+import joptsimple.OptionSet;
+
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -23,10 +26,21 @@ public class ModelCreater {
 
 	public static Pattern FIELD_PATTERN = Pattern.compile("(\\w)+(\\w)+");
 
-	public static void printConfigForExtJS(String modelName) {
+	public static void main(String[] args) {
+		OptionParser parser = new OptionParser("f:");
+		OptionSet opts = parser.parse(args);
+		if (!opts.hasArgument("f")) {
+			System.out.println("format: -f <modelFileName>");
+		} else {
+			String modelName = opts.valueOf("f").toString().split("\\.")[0];
+			System.out.println(genConfigForExtJS(modelName));
+		}
+	}
+
+	public static String genConfigForExtJS(String modelName) {
 		List<String[]> fieldList = loadModel(modelName);
 		String text = genFields(modelName, fieldList);
-		System.out.println(text);
+		return text;
 	}
 
 	public static List<String[]> loadModel(String modelName) {
