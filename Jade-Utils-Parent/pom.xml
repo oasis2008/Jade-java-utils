@@ -15,6 +15,7 @@
 		<module>../Jade-Utils-cache</module>
 		<module>../Jade-Utils-dao</module>
 		<module>../Jade-Utils-web</module>
+		<module>../Jade-Utils-sandtable</module>
 		<module>../example-cdn</module>
 	</modules>
 
