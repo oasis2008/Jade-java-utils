@@ -16,9 +16,9 @@ public class ExtJsTest {
 
 	@Test
 	public void test() {
-		String result = ModelCreater.genConfigForExtJS("OmsStkinDtlModel");
+		String result = ModelCreater.genConfigForExtJS("OrderReturnModel");
 		assertNotNull(result);
-		// System.out.println(result);
+		System.out.println(result);
 	}
 
 	@Test
