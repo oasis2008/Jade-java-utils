@@ -25,9 +25,6 @@ public class MoveUtils {
 				// nothing
 				break;
 			}
-			// 7.8.9
-			// 5.4.6
-			// 1.2.3
 			/* caculate the direction */
 			int xd = 1, yd = 1;
 			switch (direction) {
@@ -50,9 +47,23 @@ public class MoveUtils {
 			default:
 				break;
 			}
+			int nx = x + (distance * xd);
+			int ny = y + (distance * yd);
 			/* wrap if out of map */
-			int ns = x * xd;
-			int ny = y * yd;
+			if (nx < 0) {
+				result[0] = sandTable.getWidth() - Math.abs(nx);
+			} else if (nx >= sandTable.getWidth()) {
+				result[0] = Math.abs(nx) - sandTable.getWidth();
+			} else {
+				result[0] = nx;
+			}
+			if (ny < 0) {
+				result[1] = sandTable.getHeight() - Math.abs(ny);
+			} else if (nx >= sandTable.getWidth()) {
+				result[1] = Math.abs(ny) - sandTable.getWidth();
+			} else {
+				result[1] = ny;
+			}
 		}
 		return result;
 	}

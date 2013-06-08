@@ -4,27 +4,34 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SandTable {
-	private int maxWidth = 65535;
-	private int maxLength = 65535;
+	private int width = 65535;
+	private int height = 65535;
 	private Map<String, Area> areaMap = new HashMap<>();
 
-	public SandTable() {
+	public SandTable(int width, int height) {
+		this.width = width;
+		this.height = height;
 	}
 
-	public SandTable(int maxWidth, int maxLength) {
-		super();
-		this.maxWidth = maxWidth;
-		this.maxLength = maxLength;
+	public int getWidth() {
+		return width;
 	}
 
-	public int getMaxWidth() {
-		return maxWidth;
-	}
-
-	public int getMaxLength() {
-		return maxLength;
+	public int getHeight() {
+		return height;
 	}
 
 	public void putArea(Area area) {
+		StringBuffer sb = new StringBuffer();
+		sb.append(area.getCordX()).append(",").append(area.getCordY());
+		// System.out.print(sb.toString() + " | ");
+		this.areaMap.put(sb.toString(), area);
+	}
+
+	public Area getArea(int x, int y) {
+		StringBuffer sb = new StringBuffer();
+		sb.append(x).append(",").append(y);
+		// System.out.print(sb.toString()+" | ");
+		return this.areaMap.get(sb.toString());
 	}
 }

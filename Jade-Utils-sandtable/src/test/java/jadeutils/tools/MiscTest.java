@@ -18,7 +18,6 @@ public class MiscTest {
 	public void test() {
 		for (int i = 0; i < 20; i++) {
 			double w = Math.sin(Math.PI / 4) * i;
-			
 			int n = (int) Math.ceil(w) ;
 			System.out.println(w + " <> " + Math.ceil(w) + " - " + (w - n));
 		}
