@@ -3,7 +3,6 @@ package jadeutils.tools;
 import jadeutils.sandtable.model.Area;
 import jadeutils.sandtable.model.SandTable;
 import jadeutils.sandtable.status.Direction;
-import jadeutils.sandtable.tools.AsciiDisplay;
 
 import org.junit.After;
 import org.junit.Before;
@@ -29,7 +28,7 @@ public class SandTableTest {
 				sandTable.putArea(new Area(x, y, "GRASS", Direction.d6));
 			}
 		}
-		AsciiDisplay.showSandTable(sandTable);
+		// AsciiDisplay.showSandTable(sandTable);
 	}
 
 }
