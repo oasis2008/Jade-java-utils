@@ -14,8 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = { "classpath*:AppCtx*.xml" })
 public class JadeDaoTest extends AbstractJUnit4SpringContextTests {
 
-	@Autowired
-	ResidentDao residentDao;
+//	@Autowired
+//	ResidentDao residentDao;
 
 	@Test
 	public void testInsert() throws Exception {

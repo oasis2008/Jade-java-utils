@@ -1,10 +1,9 @@
 package jadeutils.web.http.upload;
 
+import jadeutils.file.FileOperater;
+
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -139,35 +138,10 @@ public class UploadTools {
 				this.autoWriteFile(item, uploadFilePath, filename);
 			}
 			// 自己定义的写入磁盘的方法
-			writeFile(item, uploadFilePath, filename);
+			FileOperater.writeFile(uploadFilePath, filename,
+					item.getInputStream());
 		}
 
-	}
-
-	/**
-	 * 把文件写入磁盘
-	 * 
-	 * @param item
-	 * @param filename
-	 * @throws IOException
-	 */
-	private void writeFile(FileItem item, String path, String filename)
-			throws IOException {
-		// 手动写的
-		File file = new File(path, filename);
-		OutputStream out = new FileOutputStream(file);
-
-		InputStream in = item.getInputStream();
-		int length = 0;
-		byte[] buf = new byte[1024];
-		// System.out.println("获取上传文件的总共的容量：" + item.getSize());
-		// 每次读到的数据存放在 buf 数组中
-		while ((length = in.read(buf)) != -1) {
-			// 数据 写到 （输出流）磁盘上
-			out.write(buf, 0, length);
-		}
-		in.close();
-		out.close();
 	}
 
 	/**
