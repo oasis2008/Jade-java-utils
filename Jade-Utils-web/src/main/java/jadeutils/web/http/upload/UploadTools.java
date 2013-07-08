@@ -4,7 +4,10 @@ import jadeutils.file.FileOperater;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +17,13 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 public class UploadTools {
+	public static final String DATE_FORMAT_YEAR = "yyyy";
+	public static final String DATE_FORMAT_MON_DAY = "MMdd";
+
+	public static final String IS_RENAME = "isRename";
+	public static final String FUNC_NAME = "funcName";
+	public static final String RELATIVE_PATH = "relativePath";
+	public static final String FILE_NAME = "realFileName";
 
 	/**
 	 * 上传单个文件
@@ -76,6 +86,7 @@ public class UploadTools {
 			String tmpFilePath, int singleFileSize, int allFileSize,
 			boolean isCached, UploadToolsCfg cfg) throws IOException //
 	{
+		String result = "error";
 		req.setCharacterEncoding(characterEncoding);
 		// 获得磁盘文件条目工厂
 		DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -95,23 +106,46 @@ public class UploadTools {
 		// 将页面请求传递信息最大值设置为50M
 		uploader.setSizeMax(allFileSize);
 		// 将单个上传文件信息最大值设置为6M
-		uploader.setFileSizeMax(singleFileSize);
+		uploader.setSizeMax(singleFileSize);
 
 		try {
-			/* 遍历所有表单成员 */
 			List<FileItem> list = (List<FileItem>) uploader.parseRequest(req);
+			boolean isRename = true;
+			String funcName = "others";
+			/* 遍历所有表单文字成员，全都加到请求的attribute里 */
 			for (FileItem item : list) {
-				String fieldName = item.getFieldName();// 表单字段名
-				if (cfg.isMatchFieldName(fieldName)) {
-					this.doUpload(req, item, uploadFilePath, fieldName);
+				if (item.isFormField()) {
+					String fieldName = item.getFieldName();// 表单字段名
+					String fieldValue = item.getString();
+
+					if (fieldName.equals(IS_RENAME)) {// 查看请求里要不要改名
+						if (fieldValue != null
+								&& fieldValue.equalsIgnoreCase("false")) {
+							isRename = false;
+						}
+					} else if (FUNC_NAME.equals(fieldName)
+							&& null != fieldValue
+							&& !"".equals(fieldValue.trim())) {// 查看请求里的功能名
+						funcName = fieldValue;
+					}
+					req.setAttribute(fieldName, fieldValue);
 				}
 			}
+			/* 遍历所有二进制流，执行保存操作 */
+			for (FileItem item : list) {
+				String fieldName = item.getFieldName();// 表单字段名
+				if (!item.isFormField() && cfg.isMatchFieldName(fieldName)) {
+					this.doUpload(req, item, //
+							uploadFilePath, funcName, isRename);
+				}
+			}
+			result = "success";
 		} catch (FileUploadException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "success";
+		return result;
 	}
 
 	/**
@@ -120,28 +154,32 @@ public class UploadTools {
 	 * @param req
 	 * @param item
 	 * @param uploadFilePath
-	 * @param fieldName
+	 * @param funcName
 	 * @throws Exception
 	 */
 	private void doUpload(HttpServletRequest req, FileItem item,
-			String uploadFilePath, String fieldName) throws Exception {
-		if (item.isFormField()) {
-			/* 字符串类型字段处理 */
-			String fieldValue = item.getString();
-			req.setAttribute(fieldName, fieldValue);
-		} else {
-			/* 二进制流文件处理 */
-			String filename = this.getUploadFileName(item.getName());
-			req.setAttribute(fieldName, filename);
-			// 这是第三方提供的写入磁盘方法，这里先注释掉不用
-			if (Integer.parseInt("2") > 6666) {// 这里的代码永远执行不到
-				this.autoWriteFile(item, uploadFilePath, filename);
-			}
-			// 自己定义的写入磁盘的方法
-			FileOperater.writeFile(uploadFilePath, filename,
-					item.getInputStream());
-		}
+			String uploadFilePath, String funcName, boolean isRename)
+			throws Exception {
 
+		/* 组成硬盘上的绝对路径 */
+		String relativePath = this.getRelativePath(funcName);
+		req.setAttribute(RELATIVE_PATH, relativePath);
+
+		/* 生成文件名 */
+		String fieldName = item.getFieldName();// 表单字段名
+		String filename = this.getUploadFileName(item.getName(), isRename);
+		// 注意这里的key是写死的，如果有多个文件一次上传的话会被覆盖掉
+		req.setAttribute(FILE_NAME, filename);
+		// TODO: 这里的不是写死的，但还没有想好怎么拿……
+		req.setAttribute(fieldName, filename);
+
+		// 这是第三方提供的写入磁盘方法，这里先注释掉不用
+		if (Integer.parseInt("2") > 6666) {// 这里的代码永远执行不到
+			this.autoWriteFile(item, uploadFilePath, filename);
+		}
+		// 自己定义的写入磁盘的方法
+		FileOperater.writeFile(uploadFilePath + relativePath, filename,
+				item.getInputStream());
 	}
 
 	/**
@@ -157,11 +195,29 @@ public class UploadTools {
 	}
 
 	/**
+	 * 生成相对地址
+	 * 
+	 * @param funcName
+	 *            对应的功能名
+	 * @return
+	 */
+	private String getRelativePath(String funcName) {
+		Date now = new Date();
+		StringBuffer sb = new StringBuffer(funcName);
+		sb.append("/");
+		sb.append((new SimpleDateFormat(DATE_FORMAT_YEAR)).format(now))//
+				.append("/");
+		sb.append((new SimpleDateFormat(DATE_FORMAT_MON_DAY)).format(now))//
+				.append("/");
+		return sb.toString();
+	}
+
+	/**
 	 * 取得上传的文件名
 	 * 
 	 * @return
 	 */
-	private String getUploadFileName(String fieldValue) {
+	private String getUploadFileName(String fieldValue, boolean isRename) {
 		String fileName = fieldValue;
 		String[] tmp = fileName.split("/");
 		int tailIdx = tmp.length - 1;
@@ -169,6 +225,14 @@ public class UploadTools {
 		tmp = fileName.split("\\\\");
 		tailIdx = tmp.length - 1;
 		fileName = tmp[tailIdx];
+		if (isRename) { // 如果要重新生成一个文件名
+			StringBuffer sb = new StringBuffer(UUID.randomUUID().toString());
+			String[] nn = fileName.split("\\.");
+			if (null != nn && nn.length > 0) {
+				sb.append(".").append(nn[nn.length - 1]);
+			}
+			fileName = sb.toString();
+		}
 		return fileName;
 	}
 }
