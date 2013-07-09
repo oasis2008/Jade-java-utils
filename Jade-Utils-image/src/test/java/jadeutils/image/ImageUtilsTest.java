@@ -75,8 +75,22 @@ public class ImageUtilsTest {
 	@Test
 	public void testConv() throws IOException {
 		// 3-图像类型转换：
-		ImageUtilsWrapper.convert(this.imgSrc + "abc.jpg",//
-				this.imgTag + "abc_convert.gif", "GIF");
+		ImageUtilsWrapper.convert(
+				this.imgSrc + "01.jpg",//
+				this.imgTag + "conv_01." + ImageUtils.IMAGE_TYPE_JPEG,
+				ImageUtils.IMAGE_TYPE_JPEG);
+		ImageUtilsWrapper.convert(
+				this.imgSrc + "01.gif",//
+				this.imgTag + "conv_02." + ImageUtils.IMAGE_TYPE_JPEG,
+				ImageUtils.IMAGE_TYPE_JPEG);
+		ImageUtilsWrapper.convert(
+				this.imgSrc + "01.png",//
+				this.imgTag + "conv_03." + ImageUtils.IMAGE_TYPE_JPEG,
+				ImageUtils.IMAGE_TYPE_JPEG);
+		ImageUtilsWrapper.convert(
+				this.imgSrc + "01.bmp",//
+				this.imgTag + "conv_04." + ImageUtils.IMAGE_TYPE_JPEG,
+				ImageUtils.IMAGE_TYPE_JPEG);
 	}
 
 	@Test
