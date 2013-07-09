@@ -103,8 +103,8 @@ public class ImageUtilsTest {
 	@Test
 	public void testPressImage() {
 		// 6-给图片添加图片水印：
-		ImageUtils.pressImage(this.imgSrc + "logo.jpg", //
-				this.imgSrc + "abc.jpg",//
+		ImageUtils.pressImage(this.imgSrc + "abc.jpg",//
+				this.imgSrc + "logo.jpg", //
 				this.imgTag + "abc_pressImage.jpg", 0, 0, 0.5f);// 测试OK
 
 	}

@@ -39,17 +39,17 @@ public class ImageUtils {
 	/**
 	 * 缩放图像（按比例缩放）
 	 * 
-	 * @param srcImageFile
+	 * @param srcFileName
 	 *            源图像文件地址
-	 * @param result
+	 * @param destFileName
 	 *            缩放后的图像地址
 	 * @param scale
 	 *            缩放比例
 	 */
-	public final static void scale(String srcImageFile, String result,
+	public final static void scale(String srcFileName, String destFileName,
 			double scale) {
 		try {
-			BufferedImage src = ImageIO.read(new File(srcImageFile)); // 读入文件
+			BufferedImage src = ImageIO.read(new File(srcFileName)); // 读入文件
 			int width = src.getWidth(); // 得到源图宽
 			int height = src.getHeight(); // 得到源图长
 			width = (int) (width * scale);
@@ -61,7 +61,7 @@ public class ImageUtils {
 			Graphics g = tag.getGraphics();
 			g.drawImage(image, 0, 0, null); // 绘制缩小后的图
 			g.dispose();
-			ImageIO.write(tag, "JPEG", new File(result));// 输出到文件流
+			ImageIO.write(tag, "JPEG", new File(destFileName));// 输出到文件流
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -70,9 +70,9 @@ public class ImageUtils {
 	/**
 	 * 缩放图像（按高度和宽度缩放）
 	 * 
-	 * @param srcImageFile
+	 * @param srcFileName
 	 *            源图像文件地址
-	 * @param result
+	 * @param destFileName
 	 *            缩放后的图像地址
 	 * @param height
 	 *            缩放后的高度
@@ -81,10 +81,10 @@ public class ImageUtils {
 	 * @param isFill
 	 *            比例不对时是否需要补白：true为补白; false为不补白;
 	 */
-	public final static void scale(String srcImageFile, String result,
+	public final static void scale(String srcFileName, String destFileName,
 			int width, int height, boolean isFill) {
 		try {
-			File f = new File(srcImageFile);
+			File f = new File(srcFileName);
 			BufferedImage bi = ImageIO.read(f);
 			Image itemp = bi.getScaledInstance(width, height,
 					BufferedImage.SCALE_SMOOTH);
@@ -111,7 +111,7 @@ public class ImageUtils {
 				g.dispose();
 				itemp = image;
 			}
-			ImageIO.write((BufferedImage) itemp, "JPEG", new File(result));
+			ImageIO.write((BufferedImage) itemp, "JPEG", new File(destFileName));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -132,9 +132,9 @@ public class ImageUtils {
 	/**
 	 * 图像切割(按指定起点坐标和宽高切割)
 	 * 
-	 * @param srcImageFile
+	 * @param srcFileName
 	 *            源图像地址
-	 * @param result
+	 * @param destFileName
 	 *            切片后的图像地址
 	 * @param x
 	 *            目标切片起点坐标X
@@ -145,11 +145,11 @@ public class ImageUtils {
 	 * @param height
 	 *            目标切片高度
 	 */
-	public final static void cut(String srcImageFile, String result, int x,
-			int y, int width, int height) {
+	public final static void cut(String srcFileName, String destFileName,
+			int x, int y, int width, int height) {
 		try {
 			// 读取源图像
-			BufferedImage bi = ImageIO.read(new File(srcImageFile));
+			BufferedImage bi = ImageIO.read(new File(srcFileName));
 			int srcWidth = bi.getHeight(); // 源图宽度
 			int srcHeight = bi.getWidth(); // 源图高度
 			if (srcWidth > 0 && srcHeight > 0) {
@@ -167,7 +167,7 @@ public class ImageUtils {
 				g.drawImage(img, 0, 0, width, height, null); // 绘制切割后的图
 				g.dispose();
 				// 输出为文件
-				ImageIO.write(tag, "JPEG", new File(result));
+				ImageIO.write(tag, "JPEG", new File(destFileName));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -177,7 +177,7 @@ public class ImageUtils {
 	/**
 	 * 图像切割（指定切片的行数和列数）
 	 * 
-	 * @param srcImageFile
+	 * @param srcFileName
 	 *            源图像地址
 	 * @param descDir
 	 *            切片目标文件夹
@@ -186,15 +186,15 @@ public class ImageUtils {
 	 * @param cols
 	 *            目标切片列数。默认2，必须是范围 [1, 20] 之内
 	 */
-	public final static void cut2(String srcImageFile, String descDir,
-			int rows, int cols) {
+	public final static void cut2(String srcFileName, String descDir, int rows,
+			int cols) {
 		try {
 			if (rows <= 0 || rows > 20)
 				rows = 2; // 切片行数
 			if (cols <= 0 || cols > 20)
 				cols = 2; // 切片列数
 			// 读取源图像
-			BufferedImage bi = ImageIO.read(new File(srcImageFile));
+			BufferedImage bi = ImageIO.read(new File(srcFileName));
 			int srcWidth = bi.getHeight(); // 源图宽度
 			int srcHeight = bi.getWidth(); // 源图高度
 			if (srcWidth > 0 && srcHeight > 0) {
@@ -245,7 +245,7 @@ public class ImageUtils {
 	/**
 	 * 图像切割（指定切片的宽度和高度）
 	 * 
-	 * @param srcImageFile
+	 * @param srcFileName
 	 *            源图像地址
 	 * @param descDir
 	 *            切片目标文件夹
@@ -254,7 +254,7 @@ public class ImageUtils {
 	 * @param destHeight
 	 *            目标切片高度。默认150
 	 */
-	public final static void cut3(String srcImageFile, String descDir,
+	public final static void cut3(String srcFileName, String descDir,
 			int destWidth, int destHeight) {
 		try {
 			if (destWidth <= 0)
@@ -262,7 +262,7 @@ public class ImageUtils {
 			if (destHeight <= 0)
 				destHeight = 150; // 切片高度
 			// 读取源图像
-			BufferedImage bi = ImageIO.read(new File(srcImageFile));
+			BufferedImage bi = ImageIO.read(new File(srcFileName));
 			int srcWidth = bi.getHeight(); // 源图宽度
 			int srcHeight = bi.getWidth(); // 源图高度
 			if (srcWidth > destWidth && srcHeight > destHeight) {
@@ -313,21 +313,21 @@ public class ImageUtils {
 	/**
 	 * 图像类型转换：GIF->JPG、GIF->PNG、PNG->JPG、PNG->GIF(X)、BMP->PNG
 	 * 
-	 * @param srcImageFile
+	 * @param srcFileName
 	 *            源图像地址
 	 * @param formatName
 	 *            包含格式非正式名称的 String：如JPG、JPEG、GIF等
-	 * @param destImageFile
+	 * @param destFileName
 	 *            目标图像地址
 	 */
-	public final static void convert(String srcImageFile, String formatName,
-			String destImageFile) {
+	public final static void convert(String srcFileName, String formatName,
+			String destFileName) {
 		try {
-			File f = new File(srcImageFile);
+			File f = new File(srcFileName);
 			f.canRead();
 			f.canWrite();
 			BufferedImage src = ImageIO.read(f);
-			ImageIO.write(src, formatName, new File(destImageFile));
+			ImageIO.write(src, formatName, new File(destFileName));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -336,18 +336,18 @@ public class ImageUtils {
 	/**
 	 * 彩色转为黑白
 	 * 
-	 * @param srcImageFile
+	 * @param srcFileName
 	 *            源图像地址
-	 * @param destImageFile
+	 * @param destFileName
 	 *            目标图像地址
 	 */
-	public final static void gray(String srcImageFile, String destImageFile) {
+	public final static void gray(String srcFileName, String destFileName) {
 		try {
-			BufferedImage src = ImageIO.read(new File(srcImageFile));
+			BufferedImage src = ImageIO.read(new File(srcFileName));
 			ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);
 			ColorConvertOp op = new ColorConvertOp(cs, null);
 			src = op.filter(src, null);
-			ImageIO.write(src, "JPEG", new File(destImageFile));
+			ImageIO.write(src, "JPEG", new File(destFileName));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -356,9 +356,9 @@ public class ImageUtils {
 	/**
 	 * 给图片添加文字水印
 	 * 
-	 * @param srcImageFile
+	 * @param srcFileName
 	 *            源图像地址
-	 * @param destImageFile
+	 * @param destFileName
 	 *            目标图像地址
 	 * @param pressText
 	 *            水印文字
@@ -377,12 +377,12 @@ public class ImageUtils {
 	 * @param alpha
 	 *            透明度：alpha 必须是范围 [0.0, 1.0] 之内（包含边界值）的一个浮点数字
 	 */
-	public final static void pressText(String srcImageFile,
-			String destImageFile, String pressText, int x, int y, //
+	public final static void pressText(String srcFileName, String destFileName,
+			String pressText, int x, int y, //
 			String fontName, int fontStyle, int fontSize, //
 			Color color, float alpha) {
 		try {
-			File img = new File(srcImageFile);
+			File img = new File(srcFileName);
 			Image src = ImageIO.read(img);
 			int width = src.getWidth(null);
 			int height = src.getHeight(null);
@@ -398,8 +398,7 @@ public class ImageUtils {
 			g.drawString(pressText, (width - (getLength(pressText) * fontSize))
 					/ 2 + x, (height - fontSize) / 2 + y);
 			g.dispose();
-			ImageIO.write((BufferedImage) image, "JPEG",
-					new File(destImageFile));// 输出到文件流
+			ImageIO.write((BufferedImage) image, "JPEG", new File(destFileName));// 输出到文件流
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -408,9 +407,9 @@ public class ImageUtils {
 	/**
 	 * 给图片添加文字水印
 	 * 
-	 * @param srcImageFile
+	 * @param srcFileName
 	 *            源图像地址
-	 * @param destImageFile
+	 * @param destFileName
 	 *            目标图像地址
 	 * @param pressText
 	 *            水印文字
@@ -429,12 +428,12 @@ public class ImageUtils {
 	 * @param alpha
 	 *            透明度：alpha 必须是范围 [0.0, 1.0] 之内（包含边界值）的一个浮点数字
 	 */
-	public final static void pressText2(String srcImageFile,
-			String destImageFile, String pressText, int x, int y, //
+	public final static void pressText2(String srcFileName,
+			String destFileName, String pressText, int x, int y, //
 			String fontName, int fontStyle, int fontSize, //
 			Color color, float alpha) {
 		try {
-			File img = new File(srcImageFile);
+			File img = new File(srcFileName);
 			Image src = ImageIO.read(img);
 			int width = src.getWidth(null);
 			int height = src.getHeight(null);
@@ -450,8 +449,7 @@ public class ImageUtils {
 			g.drawString(pressText, (width - (getLength(pressText) * fontSize))
 					/ 2 + x, (height - fontSize) / 2 + y);
 			g.dispose();
-			ImageIO.write((BufferedImage) image, "JPEG",
-					new File(destImageFile));
+			ImageIO.write((BufferedImage) image, "JPEG", new File(destFileName));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -460,11 +458,11 @@ public class ImageUtils {
 	/**
 	 * 给图片添加图片水印
 	 * 
-	 * @param pressImg
-	 *            水印图片
-	 * @param srcImageFile
+	 * @param srcFileName
 	 *            源图像地址
-	 * @param destImageFile
+	 * @param pressFileName
+	 *            水印图片
+	 * @param destFileName
 	 *            目标图像地址
 	 * @param x
 	 *            修正值。 默认在中间
@@ -473,10 +471,10 @@ public class ImageUtils {
 	 * @param alpha
 	 *            透明度：alpha 必须是范围 [0.0, 1.0] 之内（包含边界值）的一个浮点数字
 	 */
-	public final static void pressImage(String pressImg, String srcImageFile,
-			String destImageFile, int x, int y, float alpha) {
+	public final static void pressImage(String srcFileName,
+			String pressFileName, String destFileName, int x, int y, float alpha) {
 		try {
-			File img = new File(srcImageFile);
+			File img = new File(srcFileName);
 			Image src = ImageIO.read(img);
 			int wideth = src.getWidth(null);
 			int height = src.getHeight(null);
@@ -485,7 +483,7 @@ public class ImageUtils {
 			Graphics2D g = image.createGraphics();
 			g.drawImage(src, 0, 0, wideth, height, null);
 			// 水印文件
-			Image src_biao = ImageIO.read(new File(pressImg));
+			Image src_biao = ImageIO.read(new File(pressFileName));
 			int wideth_biao = src_biao.getWidth(null);
 			int height_biao = src_biao.getHeight(null);
 			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP,
@@ -494,8 +492,7 @@ public class ImageUtils {
 					(height - height_biao) / 2, wideth_biao, height_biao, null);
 			// 水印文件结束
 			g.dispose();
-			ImageIO.write((BufferedImage) image, "JPEG",
-					new File(destImageFile));
+			ImageIO.write((BufferedImage) image, "JPEG", new File(destFileName));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
