@@ -1,6 +1,6 @@
 package jadeutils.image;
 
-//import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -26,14 +26,35 @@ public class ImageUtilsTest {
 	}
 
 	@Test
+	public void testCaculateRatio() {
+		double ratio = 1.0;
+
+		ratio = ImageUtils.caculateScaleRatio(100, 100, 200, 250);
+		assertTrue(1.99 < ratio && ratio < 2.01);
+
+		ratio = ImageUtils.caculateScaleRatio(100, 100, 250, 200);
+		assertTrue(1.99 < ratio && ratio < 2.01);
+
+		ratio = ImageUtils.caculateScaleRatio(100, 100, 80, 30);
+		assertTrue(0.29 < ratio && ratio < 0.31);
+
+		ratio = ImageUtils.caculateScaleRatio(100, 100, 30, 80);
+		assertTrue(0.29 < ratio && ratio < 0.31);
+	}
+
+	@Test
 	public void testScale() {
 		// 1-缩放图像：
 		// 方法一：按比例缩放
-		ImageUtils.scale(this.imgSrc + "abc.jpg",
-				this.imgTag + "abc_scale.jpg", 2, true);// 测试OK
+		ImageUtils.scale(this.imgSrc + "abc.jpg", this.imgTag
+				+ "abc_scale1.jpg", 2);// 测试OK
+		ImageUtils.scale(this.imgSrc + "abc.jpg", this.imgTag
+				+ "abc_scale2.jpg", 0.5);// 测试OK
 		// 方法二：按高度和宽度缩放
 		ImageUtils.scale2(this.imgSrc + "abc.jpg",//
-				this.imgTag + "abc_scale2.jpg", 500, 1300, true);// 测试OK
+				this.imgTag + "abc_scale3.jpg", 300, 3000, true);// 测试OK
+		ImageUtils.scale2(this.imgSrc + "abc.jpg",//
+				this.imgTag + "abc_scale4.jpg", 3000, 300, true);// 测试OK
 	}
 
 	@Test

@@ -41,7 +41,8 @@ public class ImageUtils {
 	 * 
 	 * @param args
 	 */
-	public static void main(String[] args) {}
+	public static void main(String[] args) {
+	}
 
 	/**
 	 * 缩放图像（按比例缩放）
@@ -52,22 +53,15 @@ public class ImageUtils {
 	 *            缩放后的图像地址
 	 * @param scale
 	 *            缩放比例
-	 * @param flag
-	 *            缩放选择:true 放大; false 缩小;
 	 */
 	public final static void scale(String srcImageFile, String result,
-			int scale, boolean flag) {
+			double scale) {
 		try {
 			BufferedImage src = ImageIO.read(new File(srcImageFile)); // 读入文件
 			int width = src.getWidth(); // 得到源图宽
 			int height = src.getHeight(); // 得到源图长
-			if (flag) {// 放大
-				width = width * scale;
-				height = height * scale;
-			} else {// 缩小
-				width = width / scale;
-				height = height / scale;
-			}
+			width = (int) (width * scale);
+			height = (int) (height * scale);
 			Image image = src.getScaledInstance(width, height,
 					Image.SCALE_DEFAULT);
 			BufferedImage tag = new BufferedImage(width, height,
@@ -92,30 +86,23 @@ public class ImageUtils {
 	 *            缩放后的高度
 	 * @param width
 	 *            缩放后的宽度
-	 * @param bb
+	 * @param isFill
 	 *            比例不对时是否需要补白：true为补白; false为不补白;
 	 */
 	public final static void scale2(String srcImageFile, String result,
-			int height, int width, boolean bb) {
+			int height, int width, boolean isFill) {
 		try {
-			double ratio = 0.0; // 缩放比例
 			File f = new File(srcImageFile);
 			BufferedImage bi = ImageIO.read(f);
 			Image itemp = bi.getScaledInstance(width, height,
 					BufferedImage.SCALE_SMOOTH);
 			// 计算比例
-			if ((bi.getHeight() > height) || (bi.getWidth() > width)) {
-				if (bi.getHeight() > bi.getWidth()) {
-					ratio = (new Integer(height)).doubleValue()
-							/ bi.getHeight();
-				} else {
-					ratio = (new Integer(width)).doubleValue() / bi.getWidth();
-				}
-				AffineTransformOp op = new AffineTransformOp(
-						AffineTransform.getScaleInstance(ratio, ratio), null);
-				itemp = op.filter(bi, null);
-			}
-			if (bb) {// 补白
+			double ratio = caculateScaleRatio(bi.getWidth(), bi.getHeight(),
+					width, height); // 缩放比例
+			AffineTransformOp op = new AffineTransformOp(
+					AffineTransform.getScaleInstance(ratio, ratio), null);
+			itemp = op.filter(bi, null);
+			if (isFill) {// 补白
 				BufferedImage image = new BufferedImage(width, height,
 						BufferedImage.TYPE_INT_RGB);
 				Graphics2D g = image.createGraphics();
@@ -136,6 +123,18 @@ public class ImageUtils {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * 根据原始图像与目标图像的大小来算出缩放比例
+	 * 
+	 * @return 对应的比例
+	 */
+	public static double caculateScaleRatio(int srcWidth, int srcHeight,
+			int tagWidth, int tagHeight) {
+		double widthRatio = (new Integer(tagWidth)).doubleValue() / srcWidth;
+		double heightRatio = (new Integer(tagHeight)).doubleValue() / srcHeight;
+		return widthRatio > heightRatio ? heightRatio : widthRatio;
 	}
 
 	/**
