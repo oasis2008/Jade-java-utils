@@ -47,67 +47,66 @@ public class ImageUtilsTest {
 	public void testScale() throws IOException {
 		// 1-缩放图像：
 		// 方法一：按比例缩放
-		ImageUtils.scale(this.imgSrc + "abc.jpg", this.imgTag
-				+ "abc_scale1.jpg", 2);// 测试OK
-		ImageUtils.scale(this.imgSrc + "abc.jpg", this.imgTag
-				+ "abc_scale2.jpg", 0.5);// 测试OK
+		ImageUtilsWrapper.scale(this.imgSrc + "abc.jpg", this.imgTag
+				+ "abc_scale1.jpg", 2);
+		ImageUtilsWrapper.scale(this.imgSrc + "abc.jpg", this.imgTag
+				+ "abc_scale2.jpg", 0.5);
 		// 方法二：按高度和宽度缩放
-		ImageUtils.scale(this.imgSrc + "abc.jpg",//
-				this.imgTag + "abc_scale3.jpg", 300, 3000, true);// 测试OK
-		ImageUtils.scale(this.imgSrc + "abc.jpg",//
-				this.imgTag + "abc_scale4.jpg", 3000, 300, true);// 测试OK
+		ImageUtilsWrapper.scale(this.imgSrc + "abc.jpg",//
+				this.imgTag + "abc_scale3.jpg", 300, 3000, true);
+		ImageUtilsWrapper.scale(this.imgSrc + "abc.jpg",//
+				this.imgTag + "abc_scale4.jpg", 3000, 300, true);
 	}
 
 	@Test
-	public void testCute() {
+	public void testCut() throws IOException {
 		// 2-切割图像：
 		// 方法一：按指定起点坐标和宽高切割
-		ImageUtils.cut(this.imgSrc + "abc.jpg",//
-				this.imgTag + "abc_cut.jpg", 0, 0, 400, 400);// 测试OK
+		ImageUtilsWrapper.cut(this.imgSrc + "abc.jpg",//
+				this.imgTag + "abc_cut.jpg", 0, 0, 400, 400);
 		// 方法二：指定切片的行数和列数
-		ImageUtils.cut2(this.imgSrc + "abc.jpg",//
-				this.imgTag + "", 2, 2);// 测试OK
+		ImageUtilsWrapper.divideByGrid(this.imgSrc + "abc.jpg",//
+				this.imgTag + "abc_divide2", 2, 2);
 		// 方法三：指定切片的宽度和高度
-		ImageUtils.cut3(this.imgSrc + "abc.jpg", //
-				this.imgTag + "", 300, 300);// 测试OK
+		ImageUtilsWrapper.divideBySize(this.imgSrc + "abc.jpg", //
+				this.imgTag + "abc_divide3", 300, 300);
 	}
 
 	@Test
-	public void testConv() {
+	public void testConv() throws IOException {
 		// 3-图像类型转换：
-		ImageUtils.convert(this.imgSrc + "abc.jpg", "GIF",//
-				this.imgTag + "abc_convert.gif");// 测试OK
+		ImageUtilsWrapper.convert(this.imgSrc + "abc.jpg",//
+				this.imgTag + "abc_convert.gif", "GIF");
 	}
 
 	@Test
-	public void testGray() {
+	public void testGray() throws IOException {
 		// 4-彩色转黑白：
-		ImageUtils.gray(this.imgSrc + "abc.jpg", //
-				this.imgTag + "abc_gray.jpg");// 测试OK
+		ImageUtilsWrapper.gray(this.imgSrc + "abc.jpg", //
+				this.imgTag + "abc_gray.jpg");
 	}
 
 	@Test
-	public void testPressText() {
+	public void testPressText() throws IOException {
 		// 5-给图片添加文字水印：
 		// 方法一：
-		ImageUtils.pressText(this.imgSrc + "abc.jpg",//
+		ImageUtilsWrapper.pressText(this.imgSrc + "abc.jpg",//
 				this.imgTag + "abc_pressText.jpg", //
 				"我是水印文字", 0, 0, //
-				"宋体", Font.BOLD, 80, Color.white, 0.5f);// 测试OK
+				"宋体", Font.BOLD, 80, Color.white, 0.5f);
 		// 方法二：
 		ImageUtils.pressText2(this.imgSrc + "abc.jpg",//
 				this.imgTag + "abc_pressText2.jpg", //
 				"我也是水印文字", 0, 0, //
-				"黑体", 36, 80, Color.white, 0.5f);// 测试OK
+				"黑体", 36, 80, Color.white, 0.5f);
 	}
 
 	@Test
-	public void testPressImage() {
+	public void testPressImage() throws IOException {
 		// 6-给图片添加图片水印：
-		ImageUtils.pressImage(this.imgSrc + "abc.jpg",//
+		ImageUtilsWrapper.pressImage(this.imgSrc + "abc.jpg",//
 				this.imgSrc + "logo.jpg", //
-				this.imgTag + "abc_pressImage.jpg", 0, 0, 0.5f);// 测试OK
-
+				this.imgTag + "abc_pressImage.jpg", 0, 0, 0.5f);
 	}
 
 }
