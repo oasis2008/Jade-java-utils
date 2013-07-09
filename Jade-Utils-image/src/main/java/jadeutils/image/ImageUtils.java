@@ -37,14 +37,6 @@ public class ImageUtils {
 	public static String IMAGE_TYPE_PSD = "psd";// Photoshop的专用格式Photoshop
 
 	/**
-	 * 程序入口：用于测试
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-	}
-
-	/**
 	 * 缩放图像（按比例缩放）
 	 * 
 	 * @param srcImageFile
@@ -89,8 +81,8 @@ public class ImageUtils {
 	 * @param isFill
 	 *            比例不对时是否需要补白：true为补白; false为不补白;
 	 */
-	public final static void scale2(String srcImageFile, String result,
-			int height, int width, boolean isFill) {
+	public final static void scale(String srcImageFile, String result,
+			int width, int height, boolean isFill) {
 		try {
 			File f = new File(srcImageFile);
 			BufferedImage bi = ImageIO.read(f);
@@ -364,30 +356,31 @@ public class ImageUtils {
 	/**
 	 * 给图片添加文字水印
 	 * 
-	 * @param pressText
-	 *            水印文字
 	 * @param srcImageFile
 	 *            源图像地址
 	 * @param destImageFile
 	 *            目标图像地址
-	 * @param fontName
-	 *            水印的字体名称
-	 * @param fontStyle
-	 *            水印的字体样式
-	 * @param color
-	 *            水印的字体颜色
-	 * @param fontSize
-	 *            水印的字体大小
+	 * @param pressText
+	 *            水印文字
 	 * @param x
 	 *            修正值
 	 * @param y
 	 *            修正值
+	 * @param fontName
+	 *            水印的字体名称
+	 * @param fontStyle
+	 *            水印的字体样式
+	 * @param fontSize
+	 *            水印的字体大小
+	 * @param color
+	 *            水印的字体颜色
 	 * @param alpha
 	 *            透明度：alpha 必须是范围 [0.0, 1.0] 之内（包含边界值）的一个浮点数字
 	 */
-	public final static void pressText(String pressText, String srcImageFile,
-			String destImageFile, String fontName, int fontStyle, Color color,
-			int fontSize, int x, int y, float alpha) {
+	public final static void pressText(String srcImageFile,
+			String destImageFile, String pressText, int x, int y, //
+			String fontName, int fontStyle, int fontSize, //
+			Color color, float alpha) {
 		try {
 			File img = new File(srcImageFile);
 			Image src = ImageIO.read(img);
@@ -415,30 +408,31 @@ public class ImageUtils {
 	/**
 	 * 给图片添加文字水印
 	 * 
-	 * @param pressText
-	 *            水印文字
 	 * @param srcImageFile
 	 *            源图像地址
 	 * @param destImageFile
 	 *            目标图像地址
-	 * @param fontName
-	 *            字体名称
-	 * @param fontStyle
-	 *            字体样式
-	 * @param color
-	 *            字体颜色
-	 * @param fontSize
-	 *            字体大小
+	 * @param pressText
+	 *            水印文字
 	 * @param x
 	 *            修正值
 	 * @param y
 	 *            修正值
+	 * @param fontName
+	 *            水印的字体名称
+	 * @param fontStyle
+	 *            水印的字体样式
+	 * @param fontSize
+	 *            水印的字体大小
+	 * @param color
+	 *            水印的字体颜色
 	 * @param alpha
 	 *            透明度：alpha 必须是范围 [0.0, 1.0] 之内（包含边界值）的一个浮点数字
 	 */
-	public final static void pressText2(String pressText, String srcImageFile,
-			String destImageFile, String fontName, int fontStyle, Color color,
-			int fontSize, int x, int y, float alpha) {
+	public final static void pressText2(String srcImageFile,
+			String destImageFile, String pressText, int x, int y, //
+			String fontName, int fontStyle, int fontSize, //
+			Color color, float alpha) {
 		try {
 			File img = new File(srcImageFile);
 			Image src = ImageIO.read(img);

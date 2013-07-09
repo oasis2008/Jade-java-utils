@@ -51,9 +51,9 @@ public class ImageUtilsTest {
 		ImageUtils.scale(this.imgSrc + "abc.jpg", this.imgTag
 				+ "abc_scale2.jpg", 0.5);// 测试OK
 		// 方法二：按高度和宽度缩放
-		ImageUtils.scale2(this.imgSrc + "abc.jpg",//
+		ImageUtils.scale(this.imgSrc + "abc.jpg",//
 				this.imgTag + "abc_scale3.jpg", 300, 3000, true);// 测试OK
-		ImageUtils.scale2(this.imgSrc + "abc.jpg",//
+		ImageUtils.scale(this.imgSrc + "abc.jpg",//
 				this.imgTag + "abc_scale4.jpg", 3000, 300, true);// 测试OK
 	}
 
@@ -89,17 +89,15 @@ public class ImageUtilsTest {
 	public void testPressText() {
 		// 5-给图片添加文字水印：
 		// 方法一：
-		ImageUtils.pressText(
-				"我是水印文字", //
-				this.imgSrc + "abc.jpg",//
-				this.imgTag + "abc_pressText.jpg", "宋体", Font.BOLD,
-				Color.white, 80, 0, 0, 0.5f);// 测试OK
+		ImageUtils.pressText(this.imgSrc + "abc.jpg",//
+				this.imgTag + "abc_pressText.jpg", //
+				"我是水印文字", 0, 0, //
+				"宋体", Font.BOLD, 80, Color.white, 0.5f);// 测试OK
 		// 方法二：
-		ImageUtils.pressText2(
-				"我也是水印文字",//
-				this.imgSrc + "abc.jpg",//
-				this.imgTag + "abc_pressText2.jpg", "黑体", 36, Color.white, 80,
-				0, 0, 0.5f);// 测试OK
+		ImageUtils.pressText2(this.imgSrc + "abc.jpg",//
+				this.imgTag + "abc_pressText2.jpg", //
+				"我也是水印文字", 0, 0, //
+				"黑体", 36, 80, Color.white, 0.5f);// 测试OK
 	}
 
 	@Test
