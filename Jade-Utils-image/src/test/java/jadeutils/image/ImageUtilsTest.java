@@ -1,9 +1,10 @@
 package jadeutils.image;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.IOException;
 
 import org.junit.After;
 import org.junit.Before;
@@ -43,7 +44,7 @@ public class ImageUtilsTest {
 	}
 
 	@Test
-	public void testScale() {
+	public void testScale() throws IOException {
 		// 1-缩放图像：
 		// 方法一：按比例缩放
 		ImageUtils.scale(this.imgSrc + "abc.jpg", this.imgTag

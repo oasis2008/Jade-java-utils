@@ -16,7 +16,11 @@ import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
 import java.awt.image.ImageFilter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import javax.imageio.ImageIO;
 
@@ -45,26 +49,57 @@ public class ImageUtils {
 	 *            缩放后的图像地址
 	 * @param scale
 	 *            缩放比例
+	 * @throws IOException
 	 */
 	public final static void scale(String srcFileName, String destFileName,
-			double scale) {
+			double scale) throws IOException {
+		InputStream srcImg = null;
+		OutputStream destImg = null;
 		try {
-			BufferedImage src = ImageIO.read(new File(srcFileName)); // 读入文件
-			int width = src.getWidth(); // 得到源图宽
-			int height = src.getHeight(); // 得到源图长
-			width = (int) (width * scale);
-			height = (int) (height * scale);
-			Image image = src.getScaledInstance(width, height,
-					Image.SCALE_DEFAULT);
-			BufferedImage tag = new BufferedImage(width, height,
-					BufferedImage.TYPE_INT_RGB);
-			Graphics g = tag.getGraphics();
-			g.drawImage(image, 0, 0, null); // 绘制缩小后的图
-			g.dispose();
-			ImageIO.write(tag, "JPEG", new File(destFileName));// 输出到文件流
+			srcImg = new FileInputStream(new File(srcFileName));
+			destImg = new FileOutputStream(new File(destFileName));
+			scale(srcImg, destImg, scale);
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw e;
+		} finally {
+			try {
+				if (null != srcImg)
+					srcImg.close();
+			} catch (Exception e2) {
+			}
+			try {
+				if (null != destImg)
+					destImg.close();
+			} catch (Exception e2) {
+			}
 		}
+	}
+
+	/**
+	 * 缩放图像（按比例缩放）
+	 * 
+	 * @param srcImg
+	 *            源图像
+	 * @param destImg
+	 *            缩放后的图像
+	 * @param scale
+	 *            缩放比例
+	 * @throws IOException
+	 */
+	public final static void scale(InputStream srcImg, OutputStream destImg,
+			double scale) throws IOException {
+		BufferedImage src = ImageIO.read(srcImg); // 读入文件
+		int width = src.getWidth(); // 得到源图宽
+		int height = src.getHeight(); // 得到源图长
+		width = (int) (width * scale);
+		height = (int) (height * scale);
+		Image image = src.getScaledInstance(width, height, Image.SCALE_DEFAULT);
+		BufferedImage tag = new BufferedImage(width, height,
+				BufferedImage.TYPE_INT_RGB);
+		Graphics g = tag.getGraphics();
+		g.drawImage(image, 0, 0, null); // 绘制缩小后的图
+		g.dispose();
+		ImageIO.write(tag, "JPEG", destImg);// 输出到文件流
 	}
 
 	/**
@@ -80,41 +115,77 @@ public class ImageUtils {
 	 *            缩放后的宽度
 	 * @param isFill
 	 *            比例不对时是否需要补白：true为补白; false为不补白;
+	 * @throws IOException
 	 */
 	public final static void scale(String srcFileName, String destFileName,
-			int width, int height, boolean isFill) {
+			int width, int height, boolean isFill) throws IOException {
+		InputStream srcImg = null;
+		OutputStream destImg = null;
 		try {
-			File f = new File(srcFileName);
-			BufferedImage bi = ImageIO.read(f);
-			Image itemp = bi.getScaledInstance(width, height,
-					BufferedImage.SCALE_SMOOTH);
-			// 计算比例
-			double ratio = caculateScaleRatio(bi.getWidth(), bi.getHeight(),
-					width, height); // 缩放比例
-			AffineTransformOp op = new AffineTransformOp(
-					AffineTransform.getScaleInstance(ratio, ratio), null);
-			itemp = op.filter(bi, null);
-			if (isFill) {// 补白
-				BufferedImage image = new BufferedImage(width, height,
-						BufferedImage.TYPE_INT_RGB);
-				Graphics2D g = image.createGraphics();
-				g.setColor(Color.white);
-				g.fillRect(0, 0, width, height);
-				if (width == itemp.getWidth(null))
-					g.drawImage(itemp, 0, (height - itemp.getHeight(null)) / 2,
-							itemp.getWidth(null), itemp.getHeight(null),
-							Color.white, null);
-				else
-					g.drawImage(itemp, (width - itemp.getWidth(null)) / 2, 0,
-							itemp.getWidth(null), itemp.getHeight(null),
-							Color.white, null);
-				g.dispose();
-				itemp = image;
-			}
-			ImageIO.write((BufferedImage) itemp, "JPEG", new File(destFileName));
+			srcImg = new FileInputStream(new File(srcFileName));
+			destImg = new FileOutputStream(new File(destFileName));
+			scale(srcImg, destImg, width, height, isFill);
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw e;
+		} finally {
+			try {
+				if (null != srcImg)
+					srcImg.close();
+			} catch (Exception e2) {
+			}
+			try {
+				if (null != destImg)
+					destImg.close();
+			} catch (Exception e2) {
+			}
 		}
+	}
+
+	/**
+	 * 缩放图像（按高度和宽度缩放）
+	 * 
+	 * @param srcImg
+	 *            源图像
+	 * @param destImg
+	 *            缩放后的图像
+	 * @param height
+	 *            缩放后的高度
+	 * @param width
+	 *            缩放后的宽度
+	 * @param isFill
+	 *            比例不对时是否需要补白：true为补白; false为不补白;
+	 * @throws IOException
+	 */
+	public final static void scale(InputStream srcImg, OutputStream destImg,
+			int width, int height, boolean isFill) throws IOException {
+		BufferedImage bi = ImageIO.read(srcImg);
+		Image itemp = bi.getScaledInstance(width, height,
+				BufferedImage.SCALE_SMOOTH);
+		// 计算比例
+		double ratio = caculateScaleRatio(bi.getWidth(), bi.getHeight(), width,
+				height); // 缩放比例
+		AffineTransformOp op = new AffineTransformOp(
+				AffineTransform.getScaleInstance(ratio, ratio), null);
+		itemp = op.filter(bi, null);
+		if (isFill) {// 补白
+			BufferedImage image = new BufferedImage(width, height,
+					BufferedImage.TYPE_INT_RGB);
+			Graphics2D g = image.createGraphics();
+			g.setColor(Color.white);
+			g.fillRect(0, 0, width, height);
+			if (width == itemp.getWidth(null))
+				g.drawImage(itemp, 0, (height - itemp.getHeight(null)) / 2,
+						itemp.getWidth(null), itemp.getHeight(null),
+						Color.white, null);
+			else
+				g.drawImage(itemp, (width - itemp.getWidth(null)) / 2, 0,
+						itemp.getWidth(null), itemp.getHeight(null),
+						Color.white, null);
+			g.dispose();
+			itemp = image;
+		}
+		ImageIO.write((BufferedImage) itemp, "JPEG", destImg);
+
 	}
 
 	/**
