@@ -165,7 +165,6 @@ public class ImageUtils {
 			itemp = image;
 		}
 		ImageIO.write((BufferedImage) itemp, IMAGE_TYPE_JPEG, destImg);
-
 	}
 
 	/**
