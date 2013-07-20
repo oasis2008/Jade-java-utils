@@ -3,7 +3,6 @@ package jadeutils.web.http.upload;
 import jadeutils.file.FileOperater;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.FileUploadBase.SizeLimitExceededException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
@@ -42,14 +41,13 @@ public class UploadTools {
 	 *            是否使用缓存
 	 * @param fileName
 	 *            文件所在的字段名
-	 * @return 操作信息
-	 * @throws IOException
+	 * @throws Exception
 	 */
-	public String uploadSingleFile(HttpServletRequest req,
+	public void uploadSingleFile(HttpServletRequest req,
 			String characterEncoding, String uploadFilePath,
 			String tmpFilePath, int singleFileSize, boolean isCached,
-			final String fileName) throws IOException {
-		return this.uploadManyFiles(req, characterEncoding, uploadFilePath,
+			final String fileName) throws Exception {
+		this.uploadManyFiles(req, characterEncoding, uploadFilePath,
 				tmpFilePath, singleFileSize, singleFileSize, isCached,
 				new UploadToolsCfg() {
 					@Override
@@ -78,37 +76,39 @@ public class UploadTools {
 	 *            是否使用缓存
 	 * @param cfg
 	 *            配置类
-	 * @return 操作信息
-	 * @throws IOException
+	 * @throws Exception
 	 */
-	public String uploadManyFiles(HttpServletRequest req,
+	public void uploadManyFiles(HttpServletRequest req,
 			String characterEncoding, String uploadFilePath,
 			String tmpFilePath, int singleFileSize, int allFileSize,
-			boolean isCached, UploadToolsCfg cfg) throws IOException //
+			boolean isCached, UploadToolsCfg cfg) throws Exception//
 	{
-		String result = "error";
-		req.setCharacterEncoding(characterEncoding);
-		// 获得磁盘文件条目工厂
-		DiskFileItemFactory factory = new DiskFileItemFactory();
-		if (isCached) {
-			// 如果没以下两行设置的话，上传大的 文件 会占用 很多内存，
-			// 设置暂时存放的 存储室 , 这个存储室，可以和 最终存储文件 的目录不同
-			// 原理 它是先存到 暂时存储室，然后在真正写到 对应目录的硬盘上，
-			// 按理来说 当上传一个文件时，其实是上传了两份，第一个是以 .tem
-			// 格式的 然后再将其真正写到 对应目录的硬盘上
-			factory.setRepository(new File(tmpFilePath));
-			// 设置 缓存的大小，当上传文件的容量超过该缓存时，直接放到 暂时存储室
-			factory.setSizeThreshold(1024 * 1024);
-		}
-
-		// 高水平的API文件上传处理
-		ServletFileUpload uploader = new ServletFileUpload(factory);
-		// 将页面请求传递信息最大值设置为50M
-		uploader.setSizeMax(allFileSize);
-		// 将单个上传文件信息最大值设置为6M
-		uploader.setSizeMax(singleFileSize);
-
 		try {
+			req.setCharacterEncoding(characterEncoding);
+			// 获得磁盘文件条目工厂
+			DiskFileItemFactory factory = new DiskFileItemFactory();
+			if (isCached) {
+				// 如果没以下两行设置的话，上传大的 文件 会占用 很多内存，
+				// 设置暂时存放的 存储室 , 这个存储室，可以和 最终存储文件 的目录不同
+				// 原理 它是先存到 暂时存储室，然后在真正写到 对应目录的硬盘上，
+				// 按理来说 当上传一个文件时，其实是上传了两份，第一个是以 .tem
+				// 格式的 然后再将其真正写到 对应目录的硬盘上
+				factory.setRepository(new File(tmpFilePath));
+				// 设置 缓存的大小，当上传文件的容量超过该缓存时，直接放到 暂时存储室
+				if (allFileSize > 0) {
+					factory.setSizeThreshold(allFileSize);
+				} else {
+					factory.setSizeThreshold(500 * 1024);
+				}
+			}
+
+			// 高水平的API文件上传处理
+			ServletFileUpload uploader = new ServletFileUpload(factory);
+			// 将页面请求传递信息最大值设置为50M
+			uploader.setSizeMax(allFileSize);
+			// 将单个上传文件信息最大值设置为6M
+			uploader.setSizeMax(singleFileSize);
+
 			List<FileItem> list = (List<FileItem>) uploader.parseRequest(req);
 			boolean isRename = true;
 			String funcName = "others";
@@ -139,13 +139,11 @@ public class UploadTools {
 							uploadFilePath, funcName, isRename);
 				}
 			}
-			result = "success";
-		} catch (FileUploadException e) {
-			e.printStackTrace();
+		} catch (SizeLimitExceededException e) {
+			throw e;
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw e;
 		}
-		return result;
 	}
 
 	/**
