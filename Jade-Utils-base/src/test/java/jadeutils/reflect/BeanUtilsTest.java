@@ -33,6 +33,12 @@ public class BeanUtilsTest {
 	}
 
 	@Test
+	public void testGenClass() throws Exception {
+		Object o = Class.forName("jadeutils.reflect.Guest").newInstance();
+		assertTrue(o instanceof Guest);
+	}
+
+	@Test
 	public void testGetBeanField() throws Exception {
 		User a = new User();
 		a.setId("001");
