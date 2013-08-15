@@ -37,7 +37,9 @@ public class JadeDaoTest extends AbstractJUnit4SpringContextTests {
 
 	@Test
 	public void test001Instance() throws Exception {
-		System.out.println(this.residentDao.getAll().size());
+		if (TestConfiger.isTestLevel("module")) {
+			System.out.println(this.residentDao.getAll().size());
+		}
 	}
 
 	@Test
