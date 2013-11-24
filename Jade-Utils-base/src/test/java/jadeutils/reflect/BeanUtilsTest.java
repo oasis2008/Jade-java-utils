@@ -33,6 +33,13 @@ public class BeanUtilsTest {
 	}
 
 	@Test
+	public void chooseFunc() throws Exception {
+		MyAction action = new MyAction();
+		assertEquals("MyAction.defFunc(a, b, c)",action.execution(null, "a", "b", "c"));
+		assertEquals("MyAction.doLogic(a, b, c)",action.execution("doLogic", "a", "b", "c"));
+	}
+
+	@Test
 	public void testGenClass() throws Exception {
 		Object o = Class.forName("jadeutils.reflect.Guest").newInstance();
 		assertTrue(o instanceof Guest);
