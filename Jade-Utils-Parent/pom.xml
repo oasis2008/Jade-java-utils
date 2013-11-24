@@ -17,6 +17,7 @@
 		<module>../Jade-Utils-web</module>
 		<module>../Jade-Utils-image</module>
 		<module>../Jade-Utils-sandtable</module>
+		<module>../Jade-Utils-xmpp</module>
 		<module>../example-cdn</module>
 	</modules>
 
