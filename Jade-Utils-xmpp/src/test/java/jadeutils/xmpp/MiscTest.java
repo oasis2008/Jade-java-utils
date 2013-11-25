@@ -1,4 +1,4 @@
-package jadeutils.tools;
+package jadeutils.xmpp;
 
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.Connection;
