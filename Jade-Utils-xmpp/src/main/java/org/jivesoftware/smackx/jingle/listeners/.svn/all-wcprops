@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/listeners
+END
+JingleListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/listeners/JingleListener.java
+END
+JingleMediaListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/listeners/JingleMediaListener.java
+END
+JingleSessionListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/listeners/JingleSessionListener.java
+END
+CreatedJingleSessionListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/listeners/CreatedJingleSessionListener.java
+END
+JingleMediaInfoListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/listeners/JingleMediaInfoListener.java
+END
+JingleSessionRequestListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/listeners/JingleSessionRequestListener.java
+END
+JingleTransportListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/listeners/JingleTransportListener.java
+END

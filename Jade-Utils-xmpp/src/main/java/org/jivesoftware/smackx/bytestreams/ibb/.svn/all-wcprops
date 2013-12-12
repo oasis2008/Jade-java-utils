@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/repos/!svn/ver/13387/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb
+END
+CloseListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/repos/!svn/ver/11821/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb/CloseListener.java
+END
+InitiationListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/repos/!svn/ver/11821/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb/InitiationListener.java
+END
+DataListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/repos/!svn/ver/11821/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb/DataListener.java
+END
+InBandBytestreamSession.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/repos/!svn/ver/13387/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb/InBandBytestreamSession.java
+END
+InBandBytestreamListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/repos/!svn/ver/11821/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb/InBandBytestreamListener.java
+END
+InBandBytestreamRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/repos/!svn/ver/11821/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb/InBandBytestreamRequest.java
+END
+InBandBytestreamManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/repos/!svn/ver/12965/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb/InBandBytestreamManager.java
+END

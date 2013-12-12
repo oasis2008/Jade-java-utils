@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/repos/!svn/ver/13694/smack/trunk/source/org/jivesoftware/smack/compression
+END
+XMPPInputOutputStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/repos/!svn/ver/13522/smack/trunk/source/org/jivesoftware/smack/compression/XMPPInputOutputStream.java
+END
+Java7ZlibInputOutputStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/repos/!svn/ver/13694/smack/trunk/source/org/jivesoftware/smack/compression/Java7ZlibInputOutputStream.java
+END
+JzlibInputOutputStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/repos/!svn/ver/13522/smack/trunk/source/org/jivesoftware/smack/compression/JzlibInputOutputStream.java
+END

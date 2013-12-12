@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repos/!svn/ver/13663/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat
+END
+FixedResolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/FixedResolver.java
+END
+RTPBridge.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/repos/!svn/ver/13325/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/RTPBridge.java
+END
+ICEResolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/repos/!svn/ver/13325/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/ICEResolver.java
+END
+BridgedResolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/repos/!svn/ver/13325/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/BridgedResolver.java
+END
+ResultListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/ResultListener.java
+END
+TransportResolverListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/TransportResolverListener.java
+END
+DatagramListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/DatagramListener.java
+END
+TransportNegotiator.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/repos/!svn/ver/13325/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/TransportNegotiator.java
+END
+STUN.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/repos/!svn/ver/13325/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/STUN.java
+END
+BasicTransportManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/BasicTransportManager.java
+END
+TransportCandidate.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/repos/!svn/ver/13663/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/TransportCandidate.java
+END
+ICECandidate.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/repos/!svn/ver/13663/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/ICECandidate.java
+END
+STUNTransportManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/STUNTransportManager.java
+END
+BasicResolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/repos/!svn/ver/13325/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/BasicResolver.java
+END
+TcpUdpBridgeServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/repos/!svn/ver/13663/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/TcpUdpBridgeServer.java
+END
+HttpServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/repos/!svn/ver/13663/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/HttpServer.java
+END
+FixedTransportManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/repos/!svn/ver/10424/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/FixedTransportManager.java
+END
+ICETransportManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/repos/!svn/ver/11613/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/ICETransportManager.java
+END
+BridgedTransportManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/repos/!svn/ver/11613/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/BridgedTransportManager.java
+END
+STUNResolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/repos/!svn/ver/13325/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/STUNResolver.java
+END
+TcpUdpBridgeClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/repos/!svn/ver/13663/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/TcpUdpBridgeClient.java
+END
+TestResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/repos/!svn/ver/13663/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/TestResult.java
+END
+TransportResolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/repos/!svn/ver/13663/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/TransportResolver.java
+END
+JingleTransportManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/nat/JingleTransportManager.java
+END

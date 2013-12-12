@@ -18,6 +18,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
+		<!-- 
 		<dependency>
 			<groupId>jivesoftware</groupId>
 			<artifactId>smack</artifactId>
@@ -33,6 +34,7 @@
 			<artifactId>smackx-debug</artifactId>
 			<version>3.3.1</version>
 		</dependency>
+		 -->
 		<dependency>
 			<groupId>jivesoftware</groupId>
 			<artifactId>smackx-jingle</artifactId>

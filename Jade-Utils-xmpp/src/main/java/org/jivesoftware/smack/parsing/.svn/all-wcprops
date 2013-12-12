@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/repos/!svn/ver/13685/smack/trunk/source/org/jivesoftware/smack/parsing
+END
+ThrowException.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repos/!svn/ver/13685/smack/trunk/source/org/jivesoftware/smack/parsing/ThrowException.java
+END
+UnparsedMessage.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repos/!svn/ver/13685/smack/trunk/source/org/jivesoftware/smack/parsing/UnparsedMessage.java
+END
+UnparsedPresence.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/repos/!svn/ver/13685/smack/trunk/source/org/jivesoftware/smack/parsing/UnparsedPresence.java
+END
+UnparsedIQ.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repos/!svn/ver/13685/smack/trunk/source/org/jivesoftware/smack/parsing/UnparsedIQ.java
+END
+ParsingExceptionCallback.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/repos/!svn/ver/13685/smack/trunk/source/org/jivesoftware/smack/parsing/ParsingExceptionCallback.java
+END
+LogException.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/repos/!svn/ver/13685/smack/trunk/source/org/jivesoftware/smack/parsing/LogException.java
+END

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/repos/!svn/ver/13325/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/media
+END
+MediaNegotiator.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/repos/!svn/ver/13325/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/media/MediaNegotiator.java
+END
+PayloadType.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/media/PayloadType.java
+END
+JingleMediaSession.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/repos/!svn/ver/11253/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/media/JingleMediaSession.java
+END
+MediaReceivedListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/media/MediaReceivedListener.java
+END
+JingleMediaManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/media/JingleMediaManager.java
+END
+ContentInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/repos/!svn/ver/10407/smack/trunk/jingle/extension/source/org/jivesoftware/smackx/jingle/media/ContentInfo.java
+END

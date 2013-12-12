@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repos/!svn/ver/11821/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb/packet
+END
+Open.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/repos/!svn/ver/11821/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb/packet/Open.java
+END
+Close.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/repos/!svn/ver/11821/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb/packet/Close.java
+END
+Data.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/repos/!svn/ver/11821/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb/packet/Data.java
+END
+DataPacketExtension.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/repos/!svn/ver/11821/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb/packet/DataPacketExtension.java
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smackx/receipts
+END
+DeliveryReceipt.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smackx/receipts/DeliveryReceipt.java
+END
+DeliveryReceiptRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/repos/!svn/ver/13431/smack/trunk/source/org/jivesoftware/smackx/receipts/DeliveryReceiptRequest.java
+END
+ReceiptReceivedListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smackx/receipts/ReceiptReceivedListener.java
+END
+DeliveryReceiptManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smackx/receipts/DeliveryReceiptManager.java
+END

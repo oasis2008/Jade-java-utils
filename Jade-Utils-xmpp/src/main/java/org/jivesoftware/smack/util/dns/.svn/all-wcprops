@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smack/util/dns
+END
+DNSResolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smack/util/dns/DNSResolver.java
+END
+DNSJavaResolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smack/util/dns/DNSJavaResolver.java
+END
+SRVRecord.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smack/util/dns/SRVRecord.java
+END
+JavaxResolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smack/util/dns/JavaxResolver.java
+END
+HostAddress.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smack/util/dns/HostAddress.java
+END

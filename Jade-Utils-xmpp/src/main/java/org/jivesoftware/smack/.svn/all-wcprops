@@ -1,0 +1,203 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repos/!svn/ver/13694/smack/trunk/source/org/jivesoftware/smack
+END
+Roster.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/repos/!svn/ver/12087/smack/trunk/source/org/jivesoftware/smack/Roster.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/repos/!svn/ver/1848/smack/trunk/source/org/jivesoftware/smack/package.html
+END
+PrivacyListListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repos/!svn/ver/6616/smack/trunk/source/org/jivesoftware/smack/PrivacyListListener.java
+END
+ChatManagerListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repos/!svn/ver/7071/smack/trunk/source/org/jivesoftware/smack/ChatManagerListener.java
+END
+PacketInterceptor.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/repos/!svn/ver/11613/smack/trunk/source/org/jivesoftware/smack/PacketInterceptor.java
+END
+SmackConfiguration.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repos/!svn/ver/13691/smack/trunk/source/org/jivesoftware/smack/SmackConfiguration.java
+END
+ConnectionConfiguration.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repos/!svn/ver/13559/smack/trunk/source/org/jivesoftware/smack/ConnectionConfiguration.java
+END
+AbstractConnectionListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/repos/!svn/ver/11821/smack/trunk/source/org/jivesoftware/smack/AbstractConnectionListener.java
+END
+MessageListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repos/!svn/ver/7071/smack/trunk/source/org/jivesoftware/smack/MessageListener.java
+END
+Connection.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smack/Connection.java
+END
+PrivacyListManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repos/!svn/ver/11613/smack/trunk/source/org/jivesoftware/smack/PrivacyListManager.java
+END
+PrivacyList.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smack/PrivacyList.java
+END
+ChatManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/repos/!svn/ver/12107/smack/trunk/source/org/jivesoftware/smack/ChatManager.java
+END
+NonSASLAuthentication.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/!svn/ver/13459/smack/trunk/source/org/jivesoftware/smack/NonSASLAuthentication.java
+END
+PacketListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repos/!svn/ver/11613/smack/trunk/source/org/jivesoftware/smack/PacketListener.java
+END
+UserAuthentication.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repos/!svn/ver/13459/smack/trunk/source/org/jivesoftware/smack/UserAuthentication.java
+END
+PacketCollector.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/repos/!svn/ver/13452/smack/trunk/source/org/jivesoftware/smack/PacketCollector.java
+END
+Chat.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/repos/!svn/ver/11613/smack/trunk/source/org/jivesoftware/smack/Chat.java
+END
+ReconnectionManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smack/ReconnectionManager.java
+END
+RosterListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repos/!svn/ver/11519/smack/trunk/source/org/jivesoftware/smack/RosterListener.java
+END
+AccountManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repos/!svn/ver/11613/smack/trunk/source/org/jivesoftware/smack/AccountManager.java
+END
+PacketReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/repos/!svn/ver/13685/smack/trunk/source/org/jivesoftware/smack/PacketReader.java
+END
+ConnectionCreationListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/repos/!svn/ver/11652/smack/trunk/source/org/jivesoftware/smack/ConnectionCreationListener.java
+END
+RosterGroup.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/repos/!svn/ver/11634/smack/trunk/source/org/jivesoftware/smack/RosterGroup.java
+END
+OpenTrustManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/repos/!svn/ver/13459/smack/trunk/source/org/jivesoftware/smack/OpenTrustManager.java
+END
+RosterEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/repos/!svn/ver/11827/smack/trunk/source/org/jivesoftware/smack/RosterEntry.java
+END
+SASLAuthentication.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smack/SASLAuthentication.java
+END
+XMPPException.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smack/XMPPException.java
+END
+ServerTrustManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repos/!svn/ver/13459/smack/trunk/source/org/jivesoftware/smack/ServerTrustManager.java
+END
+XMPPConnection.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/repos/!svn/ver/13687/smack/trunk/source/org/jivesoftware/smack/XMPPConnection.java
+END
+PacketWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smack/PacketWriter.java
+END
+ConnectionListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/repos/!svn/ver/11613/smack/trunk/source/org/jivesoftware/smack/ConnectionListener.java
+END
+SmackError.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/repos/!svn/ver/13663/smack/trunk/source/org/jivesoftware/smack/SmackError.java
+END

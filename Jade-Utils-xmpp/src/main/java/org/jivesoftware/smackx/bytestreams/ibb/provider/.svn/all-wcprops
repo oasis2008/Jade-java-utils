@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/repos/!svn/ver/11821/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb/provider
+END
+OpenIQProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/repos/!svn/ver/11821/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb/provider/OpenIQProvider.java
+END
+CloseIQProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/repos/!svn/ver/11821/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb/provider/CloseIQProvider.java
+END
+DataPacketProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/repos/!svn/ver/11821/smack/trunk/source/org/jivesoftware/smackx/bytestreams/ibb/provider/DataPacketProvider.java
+END
