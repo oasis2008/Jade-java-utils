@@ -240,7 +240,9 @@ public class XMPPConnection extends Connection {
                 saslAuthentication.hasNonAnonymousAuthentication()) {
             // Authenticate using SASL
             if (password != null) {
+            	System.out.println("\n\nstart auth login ======= \n\n\n");
                 response = saslAuthentication.authenticate(username, password, resource);
+            	System.out.println("\n\nend auth login ======= \n\n\n");
             }
             else {
                 response = saslAuthentication
