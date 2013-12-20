@@ -3095,7 +3095,7 @@ public class MXParser implements XmlPullParser {
 		if (ret > 0) {
 			bufEnd += ret;
 			// if (TRACE_SIZING)
-			System.out.println("3098 From server 2 :"
+			System.out.println("MXParser.java 3098 From server 2 :"
 					// + new String(buf, 0, bufEnd < 100 ? bufEnd : 100));
 					+ new String(buf, 0, bufEnd));
 

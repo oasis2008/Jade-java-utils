@@ -307,10 +307,12 @@ public class SASLAuthentication implements UserAuthentication {
             }
         }
         if (selectedMechanism != null) {
+			System.out.println("currentMechanism type is : " + selectedMechanism);
             // A SASL mechanism was found. Authenticate using the selected mechanism and then
             // proceed to bind a resource
             try {
                 Class<? extends SASLMechanism> mechanismClass = implementedMechanisms.get(selectedMechanism);
+    			System.out.println("mechanismClass is : " + mechanismClass);
                 Constructor<? extends SASLMechanism> constructor = mechanismClass.getConstructor(SASLAuthentication.class);
                 currentMechanism = constructor.newInstance(this);
                 // Trigger SASL authentication with the selected mechanism. We use
