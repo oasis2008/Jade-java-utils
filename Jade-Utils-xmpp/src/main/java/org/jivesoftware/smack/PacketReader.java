@@ -251,7 +251,7 @@ class PacketReader {
                                 }
                                 else if (parser.getAttributeName(i).equals("from")) {
                                 	System.out.println("\t\tattribute is: " + parser.getAttributeName(i)+ //
-                                			"connection.config.setServiceName = "+parser.getAttributeValue(i));
+                                			" connection.config.setServiceName = "+parser.getAttributeValue(i));
                                     // Use the server name that the server says that it is.
                                     connection.config.setServiceName(parser.getAttributeValue(i));
                                 }
@@ -400,9 +400,11 @@ class PacketReader {
 
             if (eventType == XmlPullParser.START_TAG) {
                 if (parser.getName().equals("starttls")) {
+                	System.out.println("\t\t\t\t\t\tparseTag - start : "+ parser.getName());
                     startTLSReceived = true;
                 }
                 else if (parser.getName().equals("mechanisms")) {
+                	System.out.println("\t\t\t\t\t\tparseTag - start : "+ parser.getName());
                     // The server is reporting available SASL mechanisms. Store this information
                     // which will be used later while logging (i.e. authenticating) into
                     // the server
@@ -410,12 +412,14 @@ class PacketReader {
                             .setAvailableSASLMethods(PacketParserUtils.parseMechanisms(parser));
                 }
                 else if (parser.getName().equals("bind")) {
+                	System.out.println("\t\t\t\t\t\tparseTag - start : "+ parser.getName());
                     // The server requires the client to bind a resource to the stream
                     connection.getSASLAuthentication().bindingRequired();
                 }
                 // Set the entity caps node for the server if one is send
                 // See http://xmpp.org/extensions/xep-0115.html#stream
                 else if (parser.getName().equals("c")) {
+                	System.out.println("\t\t\t\t\t\tparseTag - start : "+ parser.getName());
                     String node = parser.getAttributeValue(null, "node");
                     String ver = parser.getAttributeValue(null, "ver");
                     if (ver != null && node != null) {
@@ -427,26 +431,32 @@ class PacketReader {
                     }
                 }
                 else if (parser.getName().equals("session")) {
+                	System.out.println("\t\t\t\t\t\tparseTag - start : "+ parser.getName());
                     // The server supports sessions
                     connection.getSASLAuthentication().sessionsSupported();
                 }
                 else if (parser.getName().equals("compression")) {
+                	System.out.println("\t\t\t\t\t\tparseTag - start : "+ parser.getName());
                     // The server supports stream compression
                     connection.setAvailableCompressionMethods(PacketParserUtils.parseCompressionMethods(parser));
                 }
                 else if (parser.getName().equals("register")) {
+                	System.out.println("\t\t\t\t\t\tparseTag - start : "+ parser.getName());
                     connection.getAccountManager().setSupportsAccountCreation(true);
                 }
             }
             else if (eventType == XmlPullParser.END_TAG) {
                 if (parser.getName().equals("starttls")) {
+                	System.out.println("\t\t\t\t\t\tparseTag - end : "+ parser.getName());
                     // Confirm the server that we want to use TLS
                     connection.startTLSReceived(startTLSRequired);
                 }
                 else if (parser.getName().equals("required") && startTLSReceived) {
+                	System.out.println("\t\t\t\t\t\tparseTag - end : "+ parser.getName());
                     startTLSRequired = true;
                 }
                 else if (parser.getName().equals("features")) {
+                	System.out.println("\t\t\t\t\t\tparseTag - end : "+ parser.getName());
                     done = true;
                 }
             }

@@ -777,6 +777,7 @@ public class XMPPConnection extends Connection {
             return;
         }
         try {
+        	System.out.println("->    XMPPConnection 780 :"+"<starttls xmlns=\"urn:ietf:params:xml:ns:xmpp-tls\"/>");
             writer.write("<starttls xmlns=\"urn:ietf:params:xml:ns:xmpp-tls\"/>");
             writer.flush();
         }
@@ -966,6 +967,7 @@ public class XMPPConnection extends Connection {
      */
     private void requestStreamCompression(String method) {
         try {
+        	System.out.println("->    XMPPConnection 780 :"+"<compress xmlns='http://jabber.org/protocol/compress'>"+"<method>" + method + "</method></compress>");
             writer.write("<compress xmlns='http://jabber.org/protocol/compress'>");
             writer.write("<method>" + method + "</method></compress>");
             writer.flush();
