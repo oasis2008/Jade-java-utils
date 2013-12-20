@@ -162,7 +162,7 @@ class PacketWriter {
             while (!done && (writerThread == thisThread)) {
                 Packet packet = nextPacket();
                 if (packet != null) {
-                	System.out.println("line 165: "+ packet.toXML());
+                	System.out.println("->    line 165: "+ packet.toXML());
                     writer.write(packet.toXML());
 
                     if (queue.isEmpty()) {
@@ -176,7 +176,7 @@ class PacketWriter {
             try {
                while (!queue.isEmpty()) {
                    Packet packet = queue.remove();
-               	System.out.println("line 165: "+ packet.toXML());
+               	System.out.println("->    line 179: "+ packet.toXML());
                     writer.write(packet.toXML());
                 }
                 writer.flush();
@@ -190,7 +190,7 @@ class PacketWriter {
 
             // Close the stream.
             try {
-            	System.out.println("line 165: "+ "</stream:stream>");
+            	System.out.println("->    line 193: "+ "</stream:stream>");
                 writer.write("</stream:stream>");
                 writer.flush();
             }
@@ -234,7 +234,7 @@ class PacketWriter {
         stream.append(" xmlns=\"jabber:client\"");
         stream.append(" xmlns:stream=\"http://etherx.jabber.org/streams\"");
         stream.append(" version=\"1.0\">");
-        System.out.println("line 237: "+stream.toString());
+        System.out.println("->    line 237: "+stream.toString());
         writer.write(stream.toString());
         writer.flush();
     }

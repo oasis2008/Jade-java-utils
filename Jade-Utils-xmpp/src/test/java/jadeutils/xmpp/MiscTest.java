@@ -32,6 +32,6 @@ public class MiscTest {
 					}
 				});
 		chat.sendMessage("Howdy!");
-		Thread.sleep(5 * 10 * 1000);
+		Thread.sleep(5 * 1 * 1000);
 	}
 }

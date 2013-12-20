@@ -183,6 +183,7 @@ class PacketReader {
                     int parserDepth = parser.getDepth();
                     ParsingExceptionCallback callback = connection.getParsingExceptionCallback();
                     if (parser.getName().equals("message")) {
+                    	System.out.println("PacketReader.java process node : " + parser.getName());
                         Packet packet;
                         try {
                             packet = PacketParserUtils.parseMessage(parser);
@@ -197,6 +198,7 @@ class PacketReader {
                         processPacket(packet);
                     }
                     else if (parser.getName().equals("iq")) {
+                    	System.out.println("PacketReader.java process node : " + parser.getName());
                         IQ iq;
                         try {
                             iq = PacketParserUtils.parseIQ(parser, connection);
@@ -211,6 +213,7 @@ class PacketReader {
                         processPacket(iq);
                     }
                     else if (parser.getName().equals("presence")) {
+                    	System.out.println("PacketReader.java process node : " + parser.getName());
                         Presence presence;
                         try {
                             presence = PacketParserUtils.parsePresence(parser);
@@ -227,11 +230,14 @@ class PacketReader {
                     // We found an opening stream. Record information about it, then notify
                     // the connectionID lock so that the packet reader startup can finish.
                     else if (parser.getName().equals("stream")) {
+                    	System.out.println("PacketReader.java process node : " + parser.getName());
                         // Ensure the correct jabber:client namespace is being used.
                         if ("jabber:client".equals(parser.getNamespace(null))) {
+                        	System.out.println("\tnamespace is: " + parser.getNamespace(null));
                             // Get the connection id.
                             for (int i=0; i<parser.getAttributeCount(); i++) {
                                 if (parser.getAttributeName(i).equals("id")) {
+                                	System.out.println("\t\tattribute is: " + parser.getAttributeName(i));
                                     // Save the connectionID
                                     connectionID = parser.getAttributeValue(i);
                                     if (!"1.0".equals(parser.getAttributeValue("", "version"))) {
@@ -239,10 +245,13 @@ class PacketReader {
                                         // server is not XMPP 1.0 compliant otherwise make the
                                         // notification after TLS has been negotiated or if TLS
                                         // is not supported
+                                    	System.out.println("\t\t\treleaseConnectionIDLock()  ");
                                         releaseConnectionIDLock();
                                     }
                                 }
                                 else if (parser.getAttributeName(i).equals("from")) {
+                                	System.out.println("\t\tattribute is: " + parser.getAttributeName(i)+ //
+                                			"connection.config.setServiceName = "+parser.getAttributeValue(i));
                                     // Use the server name that the server says that it is.
                                     connection.config.setServiceName(parser.getAttributeValue(i));
                                 }
@@ -250,12 +259,15 @@ class PacketReader {
                         }
                     }
                     else if (parser.getName().equals("error")) {
+                    	System.out.println("PacketReader.java process node : " + parser.getName());
                         throw new XMPPException(PacketParserUtils.parseStreamError(parser));
                     }
                     else if (parser.getName().equals("features")) {
+                    	System.out.println("PacketReader.java process node : " + parser.getName());
                         parseFeatures(parser);
                     }
                     else if (parser.getName().equals("proceed")) {
+                    	System.out.println("PacketReader.java process node : " + parser.getName()+ " do connection.proceedTLSReceived()");
                         // Secure the connection by negotiating TLS
                         connection.proceedTLSReceived();
                         // Reset the state of the parser since a new stream element is going
@@ -263,44 +275,59 @@ class PacketReader {
                         resetParser();
                     }
                     else if (parser.getName().equals("failure")) {
+                    	System.out.println("PacketReader.java process node : " + parser.getName());
                         String namespace = parser.getNamespace(null);
                         if ("urn:ietf:params:xml:ns:xmpp-tls".equals(namespace)) {
+                        	System.out.println("\treason is : " + namespace);
                             // TLS negotiation has failed. The server will close the connection
                             throw new Exception("TLS negotiation has failed");
                         }
                         else if ("http://jabber.org/protocol/compress".equals(namespace)) {
+                        	System.out.println("\treason is : " + namespace);
                             // Stream compression has been denied. This is a recoverable
                             // situation. It is still possible to authenticate and
                             // use the connection but using an uncompressed connection
                             connection.streamCompressionDenied();
                         }
                         else {
+                        	System.out.println("\treason is : SASL Failure" );
+                        	System.out.println("\t\tdo  PacketParserUtils.parseSASLFailure(parser)" );
                             // SASL authentication has failed. The server may close the connection
                             // depending on the number of retries
                             final Failure failure = PacketParserUtils.parseSASLFailure(parser);
+                        	System.out.println("\t\tdo processPacket(failure)" );
                             processPacket(failure);
+                        	System.out.println("\t\tdo processPacket(failure)" );
                             connection.getSASLAuthentication().authenticationFailed(failure.getCondition());
                         }
                     }
                     else if (parser.getName().equals("challenge")) {
+                    	System.out.println("PacketReader.java process node : " + parser.getName());
                         // The server is challenging the SASL authentication made by the client
                         String challengeData = parser.nextText();
+                    	System.out.println("\tchallengeData is : " + challengeData );
                         processPacket(new Challenge(challengeData));
                         connection.getSASLAuthentication().challengeReceived(challengeData);
                     }
                     else if (parser.getName().equals("success")) {
-                        processPacket(new Success(parser.nextText()));
+                    	System.out.println("PacketReader.java process node : " + parser.getName());
+                    	String nextText = parser.nextText();
+                    	System.out.println("\tprocessPacket() : " + nextText );
+                        processPacket(new Success(nextText));
                         // We now need to bind a resource for the connection
                         // Open a new stream and wait for the response
+                    	System.out.println("\tpacketWriter.openStream() : " );
                         connection.packetWriter.openStream();
                         // Reset the state of the parser since a new stream element is going
                         // to be sent by the server
                         resetParser();
                         // The SASL authentication with the server was successful. The next step
                         // will be to bind the resource
+                    	System.out.println("\tconnection.getSASLAuthentication().authenticated(); : " );
                         connection.getSASLAuthentication().authenticated();
                     }
                     else if (parser.getName().equals("compressed")) {
+                    	System.out.println("PacketReader.java process node : " + parser.getName());
                         // Server confirmed that it's possible to use stream compression. Start
                         // stream compression
                         connection.startStreamCompression();
@@ -311,6 +338,7 @@ class PacketReader {
                 }
                 else if (eventType == XmlPullParser.END_TAG) {
                     if (parser.getName().equals("stream")) {
+                    	System.out.println("PacketReader.java process node : " + parser.getName());
                         // Disconnect the connection
                         connection.disconnect();
                     }

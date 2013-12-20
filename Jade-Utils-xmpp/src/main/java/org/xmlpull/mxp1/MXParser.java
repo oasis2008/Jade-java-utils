@@ -3083,7 +3083,7 @@ public class MXParser implements XmlPullParser {
 			bufAbsoluteStart += bufStart;
 			bufStart = 0;
 			if (TRACE_SIZING)
-				System.out.println("3086 From server 1 :"
+				System.out.println("<-    MXParser.java 3086 From server 1 :"
 //						+ bufEnd + " pos=" + pos + " posStart=" + posStart + " posEnd=" + posEnd + " buf first 100 chars:"
 //						+ new String(buf, 0, bufEnd < 100 ? bufEnd : 100));
 						+ new String(buf, 0, bufEnd));
@@ -3095,7 +3095,7 @@ public class MXParser implements XmlPullParser {
 		if (ret > 0) {
 			bufEnd += ret;
 			// if (TRACE_SIZING)
-			System.out.println("MXParser.java 3098 From server 2 :"
+			System.out.println("<-    MXParser.java 3098 From server 2 :"
 					// + new String(buf, 0, bufEnd < 100 ? bufEnd : 100));
 					+ new String(buf, 0, bufEnd));
 
