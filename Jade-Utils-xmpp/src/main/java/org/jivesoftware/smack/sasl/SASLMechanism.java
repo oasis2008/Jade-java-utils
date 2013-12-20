@@ -191,12 +191,14 @@ public abstract class SASLMechanism implements CallbackHandler {
             if(sc.hasInitialResponse()) {
                 byte[] response = sc.evaluateChallenge(new byte[0]);
                 authenticationText = StringUtils.encodeBase64(response, false);
+                System.out.println("auth has init Resp, auth text is : "+authenticationText);
             }
         } catch (SaslException e) {
             throw new XMPPException("SASL authentication failed", e);
         }
 
         // Send the authentication to the server
+        System.out.println("send AuthMechanism name is : "+getName());
         getSASLAuthentication().send(new AuthMechanism(getName(), authenticationText));
     }
 

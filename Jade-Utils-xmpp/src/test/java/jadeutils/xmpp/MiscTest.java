@@ -24,14 +24,14 @@ public class MiscTest {
 	public void test() throws XMPPException, InterruptedException {
 		Connection connection = new XMPPConnection("jabber.org");
 		connection.connect();
-//		connection.login("jade-shan", "yunyun811203");
-//		Chat chat = connection.getChatManager().createChat(
-//				"evokeralucard@gmail.com", new MessageListener() {
-//					public void processMessage(Chat chat, Message message) {
-//						System.out.println("Received message: " + message);
-//					}
-//				});
-//		chat.sendMessage("Howdy!");
+		connection.login("jade-shan", "yunyun811203");
+		Chat chat = connection.getChatManager().createChat(
+				"evokeralucard@gmail.com", new MessageListener() {
+					public void processMessage(Chat chat, Message message) {
+						System.out.println("Received message: " + message);
+					}
+				});
+		chat.sendMessage("Howdy!");
 		Thread.sleep(5 * 10 * 1000);
 	}
 }
