@@ -2033,8 +2033,6 @@
 	data-filtertext="科左后旗 KZHQ kezuohouqi" data-flag="0" data-hot="2838"
 	data-pinyin="kezuohouqi" data-title="K"
 	class="ui-btn ui-li ui-btn-up-d ui-li-static ui-body-d list-group  letters">科左后旗</li>
-<li data-show="0" data-letters="L" id="L" data-role="list-divider"
-	class="ui-li city-head ui-li-divider ui-bar-d lettersgroups">
 <li data-districtid="-1" param="" data-id="90"
 	data-filtertext="临安 la linan" data-flag="0" data-hot="3205"
 	data-pinyin="linan" data-title="L"
@@ -2599,8 +2597,6 @@
 	data-filtertext="连州(清远) LZ(QY) lianzhou(qingyuan)" data-flag="0"
 	data-hot="3120" data-pinyin="lianzhou(qingyuan)" data-title="L"
 	class="ui-btn ui-li ui-btn-up-d ui-li-static ui-body-d list-group  letters">连州(清远)</li>
-<li data-show="0" data-letters="M" id="M" data-role="list-divider"
-	class="ui-li city-head ui-li-divider ui-bar-d lettersgroups">
 <li data-districtid="-1" param="" data-id="1024"
 	data-filtertext="马鞍山 mas maanshan" data-flag="0" data-hot="3565"
 	data-pinyin="maanshan" data-title="M"
@@ -2774,8 +2770,6 @@
 	data-filtertext="米脂县 mzx mizhixian" data-flag="0" data-hot="3665"
 	data-pinyin="mizhixian" data-title="M"
 	class="ui-btn ui-li ui-btn-up-d ui-li-static ui-body-d list-group  letters">米脂县</li>
-<li data-show="0" data-letters="N" id="N" data-role="list-divider"
-	class="ui-li city-head ui-li-divider ui-bar-d lettersgroups">
 <li data-districtid="-1" param="" data-id="12"
 	data-filtertext="南京 nj nanjing" data-flag="1" data-hot="11"
 	data-pinyin="nanjing" data-title="hotCity"
@@ -2940,8 +2934,6 @@
 	data-filtertext="南漳(襄阳) NZ(XY) NanZhang(XiangYang)" data-flag="0"
 	data-hot="3851" data-pinyin="nanzhang(xiangyang)" data-title="N"
 	class="ui-btn ui-li ui-btn-up-d ui-li-static ui-body-d list-group  letters">南漳(襄阳)</li>
-<li data-show="0" data-letters="O" id="O" data-role="list-divider"
-	class="ui-li city-head ui-li-divider ui-bar-d lettersgroups">
 <li data-districtid="-1" param="" data-id="7571"
 	data-filtertext="磐安 pa panan" data-flag="0" data-hot="3935"
 	data-pinyin="panan" data-title="P"
